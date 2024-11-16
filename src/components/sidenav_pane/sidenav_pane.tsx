@@ -4,7 +4,6 @@ import "./sidenav_pane.css";
 interface SidenavPaneProps {
   activePane: string;
   paneId: string;
-  title: string;
   children: React.ReactNode;
 }
 
