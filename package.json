@@ -18,6 +18,7 @@
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
     "@mui/x-data-grid": "^7.22.2",
+    "@types/leaflet-routing-machine": "^3.2.8",
     "font-awesome": "^4.7.0",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",

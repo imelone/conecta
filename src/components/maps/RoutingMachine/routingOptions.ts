@@ -24,13 +24,13 @@ const routingOptions = {
   }),
   plan: new L.Routing.Plan([], {
     createMarker(i: number, wp: any, n: any) {
-      let iconUrl = viaIcon.src;
+      let iconUrl = viaIcon;
       if (i === 0) {
-        iconUrl = startIcon.src;
+        iconUrl = startIcon;
       }
 
       if (i === n - 1) {
-        iconUrl = endIcon.src;
+        iconUrl = endIcon;
       }
 
       const options = {

@@ -2,21 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TreeMenu } from "../tree_menu/tree_menu"; // Adjust the import path
 import styles from "./styles.module.css";
 
-interface Parcel {
-  parcela: string;
-  properties?: { leyenda?: { name: string; label: string; color: string } };
-}
-
-interface Municipio {
-  municipio: string;
-  parcelas: Parcel[];
-}
-
-interface Provincia {
-  provincia: string;
-  municipios: Municipio[];
-}
-
 interface TownListProps {
   communitiesData: any[];
   handleToggleClick: (leyendaName: string) => void;

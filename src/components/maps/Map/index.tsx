@@ -1,5 +1,5 @@
 import React from "react";
-import L, { Map as LeafletMap } from "leaflet";
+import L from "leaflet";
 import {
   MapContainer,
   TileLayer,

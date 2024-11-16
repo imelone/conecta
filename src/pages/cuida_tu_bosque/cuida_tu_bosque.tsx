@@ -6,6 +6,7 @@ import L, { LatLngTuple } from "leaflet"; // Make sure L is imported for the map
 import "./cuida_tu_bosque.css";
 import "leaflet/dist/leaflet.css";
 import DataAnalysisCuidaTuBosque from "../../components/data_analisis_cuida_tu_bosque/data_analisis_cuida_tu_bosque_screen";
+import { useLocation } from "react-router-dom";
 
 interface GeoJsonLayer {
   toggleName: string;
@@ -26,14 +27,24 @@ const CuidaTuBosque: React.FC = () => {
   const mapRef = useRef<L.Map | null>(null); // Initialize mapRef as L.Map or null
   const [geoJsonLayers, setGeoJsonLayers] = useState<GeoJsonLayer[]>([]);
   //const [data, setData] = useState<any>(undefined);
+  const location = useLocation();
   const [activeToggles, setActiveToggles] = useState<Record<string, boolean>>(
     {}
   );
   const [townsData, setTownsData] = useState<any>(null);
-  const [selectedTown, setSelectedTown] = useState<string | null>(null);
   const [isDataAnalysisCuidaTuBosqueOpen, setIsDataAnalysisCuidaTuBosqueOpen] =
     useState<boolean>(false);
+  useEffect(() => {
+    resetState();
+  }, [location]);
 
+  const resetState = () => {
+    // Reset any necessary state
+    setDataForest([]); // For example
+    setGeoJsonLayers([]);
+    setActiveToggles({});
+    setIsDataAnalysisCuidaTuBosqueOpen(false);
+  };
   useEffect(() => {
     const loadData = async () => {
       try {

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import { useMap } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
+import "leaflet-routing-machine"; // This is necessary to add routing functionality
 
 interface RoutingMachineProps {
   startPoint: LatLngExpression; // Define the type explicitly
