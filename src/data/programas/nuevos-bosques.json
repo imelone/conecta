@@ -1,0 +1,172 @@
+[
+  {
+    "descripcion": [
+      "Especies a sembrar",
+      "Materiales y recursos necesarios",
+      "Adecuación de la zona",
+      "Plantación",
+      "Control de estado y crecimiento",
+      "Reposición de ejemplares",
+      "Evolución de la plantación",
+      "Prevención de incendios"
+    ],
+    "image": "nuevos_bosques_main"
+  },
+  {
+    "distritos": [
+      {
+        "comunidad": "Andalucía",
+        "provincias": [
+          {
+            "provincia": "Jaén",
+            "municipios": [
+              {
+                "municipio": "Chiclana de Segura",
+                "parcelas": [
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.053377, 38.302802]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "laHerencia",
+                        "label": "La Herencia",
+                        "color": "#736BA9",
+                        "text": ""
+                      },
+                      "catastrales": {
+                        "text": "",
+                        "image": "la-herencia-parcela.png",
+                        "refCat": "23029A03000201 LP",
+                        "poligono": "",
+                        "parcela": "",
+                        "coordenadasX": "",
+                        "coordenadasY": ""
+                      },
+                      "indicadores": {
+                        "superficie": "",
+                        "arbolesNuevos": "625",
+                        "co2PorCapturar": "46,86"
+                      },
+                      "analisis": {
+                        "text": "",
+                        "image": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.08786, 38.30275]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "losLlanos",
+                        "label": "Los Llanos",
+                        "color": "#C1BE13",
+                        "text": ""
+                      },
+                      "catastrales": {
+                        "text": "",
+                        "image": "",
+                        "refCat": "23029A05500059 LU",
+                        "poligono": "55",
+                        "parcela": "59",
+                        "coordenadasX": "",
+                        "coordenadasY": ""
+                      },
+                      "indicadores": {
+                        "superficie": "22,15",
+                        "arbolesNuevos": "22820",
+                        "co2PorCapturar": "1711,50"
+                      },
+                      "analisis": {
+                        "text": "",
+                        "image": ""
+                      }
+                    }
+                  },
+
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.062473, 38.302069]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "Loscarrizales",
+                        "label": "Los Carrizales",
+                        "color": "#EE20B3",
+                        "text": ""
+                      },
+                      "catastrales": {
+                        "text": "",
+                        "image": "los-carrizales-parcela.png",
+                        "refCat": "23029A03200022LY",
+                        "poligono": "",
+                        "parcela": "",
+                        "coordenadasX": "",
+                        "coordenadasY": ""
+                      },
+                      "indicadores": {
+                        "superficie": "",
+                        "arbolesNuevos": "20000",
+                        "co2PorCapturar": "37002,44"
+                      },
+                      "analisis": {
+                        "text": "",
+                        "image": ""
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "municipio": "Santa Elena",
+                "parcelas": [
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.548528, 38.34325]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "laAliseda",
+                        "label": "La Aliseda",
+                        "color": "#008000",
+                        "text": ""
+                      },
+                      "catastrales": {
+                        "text": "",
+                        "image": "",
+                        "refCat": "",
+                        "poligono": "",
+                        "parcela": "",
+                        "coordenadasX": "",
+                        "coordenadasY": ""
+                      },
+                      "indicadores": {
+                        "superficie": "",
+                        "arbolesNuevos": "3000",
+                        "co2PorCapturar": "230"
+                      },
+                      "analisis": {
+                        "text": "",
+                        "image": ""
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
