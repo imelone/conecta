@@ -22,12 +22,10 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
   dataForest,
   removeForestItem,
   handleToggleClick,
-  activeToggles,
 }) => {
   const {
     activeTab,
     handleTabClick,
-    handleClose,
     rowsCatastrales,
     rowsIndicadores,
     setIsMinimized,

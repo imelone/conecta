@@ -10,7 +10,6 @@ interface AreaInfoComponentProps {
   areaColor: string;
   onClose: (name: string) => void;
   removeForestItem: (name: string) => void;
-  toggleName: string;
   handleToggleClick: (name: string) => void;
 }
 
@@ -21,7 +20,6 @@ const AreaInfoComponent: React.FC<AreaInfoComponentProps> = ({
   areaColor,
   onClose,
   removeForestItem,
-  toggleName,
   handleToggleClick,
 }) => {
   const handleClose = () => {

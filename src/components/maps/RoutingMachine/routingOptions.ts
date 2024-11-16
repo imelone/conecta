@@ -23,7 +23,7 @@ const routingOptions = {
     language: "es",
   }),
   plan: new L.Routing.Plan([], {
-    createMarker(i, wp, n) {
+    createMarker(i: number, wp: any, n: any) {
       let iconUrl = viaIcon.src;
       if (i === 0) {
         iconUrl = startIcon.src;

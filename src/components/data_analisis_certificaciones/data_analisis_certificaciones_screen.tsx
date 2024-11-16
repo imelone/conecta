@@ -17,7 +17,6 @@ const DataAnalysisCertificaciones: React.FC<DataAnalysisMenuProps> = ({
   const {
     activeTab,
     handleTabClick,
-    handleClose,
     isMinimized,
     iso,
     sicted,

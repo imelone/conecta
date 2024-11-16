@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Map from "./Map/index";
 import Drawer from "@mui/material/Drawer";
 

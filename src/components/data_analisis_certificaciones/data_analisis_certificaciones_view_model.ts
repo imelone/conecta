@@ -23,19 +23,14 @@ export const useDataAnalysisCertificacionesViewModel = (
     setActiveTab(tabName);
   };
 
-  const handleClose = (areaName: any) => {
-    // removeForestItem(areaName);
-  };
-
   // Initialize arrays to hold the values
-  const iso = (data && data[0]) || {};
-  const sicted = (data && data[1]) || {};
-  const caae = (data && data[2]) || {};
-  console.log("iso: ", iso);
+  const iso = data?.[0] ?? {};
+  const sicted = data?.[1] ?? {};
+  const caae = data?.[2] ?? {};
+
   return {
     activeTab,
     handleTabClick,
-    handleClose,
     data,
     iso,
     caae,

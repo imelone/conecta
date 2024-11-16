@@ -17,16 +17,8 @@ interface Provincia {
   municipios: Municipio[];
 }
 
-interface Community {
-  comunidad: string;
-  provincias: Provincia[];
-  descripcion: string[];
-}
-
 interface TownListProps {
-  sectionMainImg: string;
   communitiesData: any[];
-  onParcelClick: (parcel: string) => void;
   handleToggleClick: (leyendaName: string) => void;
   // handleMunicipioToggleClick: (municipio: string) => void; // Updated parameter name
   activeToggles: any;
@@ -36,9 +28,8 @@ interface TownListProps {
 }
 
 const TownTreeMenu: React.FC<TownListProps> = ({
-  sectionMainImg,
   communitiesData,
-  onParcelClick,
+
   handleToggleClick,
   // handleMunicipioToggleClick,
   activeToggles,
@@ -101,27 +92,9 @@ const TownTreeMenu: React.FC<TownListProps> = ({
         </div>
 
         <ul className={styles.noHorizontalScroll}>
-          {programsInfo?.map(
-            (
-              item:
-                | string
-                | number
-                | bigint
-                | boolean
-                | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | Promise<React.AwaitedReactNode>
-                | null
-                | undefined,
-              idx: React.Key | null | undefined
-            ) => (
-              <li key={idx}>{item}</li>
-            )
-          )}
+          {programsInfo?.map((item: any, idx: any) => (
+            <li key={idx}>{item}</li>
+          ))}
         </ul>
       </div>
       <div style={{ justifyContent: "left", width: "100%" }}>

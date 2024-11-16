@@ -11,6 +11,15 @@ interface GeoJsonLayer {
   toggleName: string;
   layer: L.Layer;
 }
+interface Parcela {
+  properties: {
+    leyenda: {
+      name: string;
+    };
+  };
+  parcelas?: Parcela[];
+  geometry?: { coordinates: []; type: string };
+}
 
 const CuidaTuBosque: React.FC = () => {
   const [dataForest, setDataForest] = useState([]);
@@ -54,9 +63,9 @@ const CuidaTuBosque: React.FC = () => {
       if (foundParcela) {
         // Check if coordinates are present
         addDataToForest(foundParcela);
-        const coordinates = foundParcela.geometry?.coordinates;
+        const coordinates = foundParcela?.geometry?.coordinates;
         if (coordinates && coordinates.length > 0) {
-          if (foundParcela.geometry.type === "Point") {
+          if (foundParcela?.geometry?.type === "Point") {
             console.log("entra add point layer");
             await addPointLayer(foundParcela);
           }
@@ -104,18 +113,24 @@ const CuidaTuBosque: React.FC = () => {
     }
 
     // Add the new layer to the map
-    pointLayer.addTo(mapRef.current);
 
-    // Update the state to include the new layer
-    console.log("geojsonLayers: ", geoJsonLayers);
-    setGeoJsonLayers((prevLayers) => [
-      ...prevLayers,
-      { toggleName: data.properties?.leyenda?.name, layer: pointLayer },
-    ]);
+    if (mapRef.current) {
+      // Add the new layer to the map
+      pointLayer.addTo(mapRef.current);
 
-    // Adjust the map view to focus on the new marker
-    if (!(coordinates[1] === 0 && coordinates[0] === 0)) {
-      mapRef.current.setView([latLng[0], latLng[1] - 0.02], 15);
+      // Update the state to include the new layer
+      console.log("geojsonLayers: ", geoJsonLayers);
+      setGeoJsonLayers((prevLayers) => [
+        ...prevLayers,
+        { toggleName: data.properties?.leyenda?.name, layer: pointLayer },
+      ]);
+
+      // Adjust the map view to focus on the new marker
+      if (!(coordinates[1] === 0 && coordinates[0] === 0)) {
+        mapRef.current.setView([latLng[0], latLng[1] - 0.02], 15);
+      }
+    } else {
+      console.error("Map reference is null, cannot add layer.");
     }
   };
 
@@ -137,7 +152,7 @@ const CuidaTuBosque: React.FC = () => {
     toggleName: string,
     items: any[] | undefined,
     levels: string[]
-  ): any | null => {
+  ): Parcela | null => {
     if (!Array.isArray(items)) {
       console.error("Expected items to be an array, but got:", items);
       return null;
@@ -275,9 +290,7 @@ const CuidaTuBosque: React.FC = () => {
     <div id="map">
       <SidenavPane activePane={"1"} paneId={"1"}>
         <TownTreeMenu
-          sectionMainImg={""}
           communitiesData={townsData}
-          onParcelClick={setSelectedTown}
           handleToggleClick={handleToggleClick}
           activeToggles={activeToggles}
           selectedProgram={"cuida-tu-bosque"}

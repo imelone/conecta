@@ -11,7 +11,7 @@ const RoutingMachine: React.FC<RoutingMachineProps> = ({
   startPoint,
   endPoint,
 }) => {
-  const map = useMap();
+  //const map = useMap();
   const routingControlRef = useRef<L.Routing.Control | null>(null);
 
   useEffect(() => {
