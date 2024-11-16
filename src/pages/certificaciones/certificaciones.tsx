@@ -24,7 +24,7 @@ const Certificaciones: React.FC = () => {
 
   return (
     <div id="map">
-      <SidenavPane activePane={"1"} paneId={"1"} title={"Certificaciones"}>
+      <SidenavPane activePane={"1"} paneId={"1"}>
         <CertificacionesSideNav />
       </SidenavPane>
       <Map />

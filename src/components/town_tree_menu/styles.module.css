@@ -12,6 +12,8 @@
   scrollbar-color: #888 #f1f1f1; /* Firefox */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .scrollContainer::-webkit-scrollbar {

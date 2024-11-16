@@ -67,3 +67,13 @@ body {
 .leaflet-container {
   touch-action: none;
 }
+ul {
+  list-style-type: none; /* Removes bullets from ul */
+  padding-left: 0; /* Optional: removes default padding */
+}
+
+li {
+  display: list-item; /* Ensures list items are displayed correctly */
+  text-align: -webkit-match-parent;
+  unicode-bidi: isolate;
+}

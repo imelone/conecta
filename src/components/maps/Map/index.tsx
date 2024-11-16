@@ -9,9 +9,7 @@ import {
 import "leaflet/dist/leaflet.css"; // Import Leaflet's CSS for basic styling
 
 // Define the Map component
-const Map: React.FC<{ mapRef: React.RefObject<L.Map | null> }> = ({
-  mapRef,
-}) => {
+const Map: React.FC<{ mapRef?: React.RefObject<L.Map> }> = ({ mapRef }) => {
   const coord: [number, number] = [40.4637, -3.7492]; // Default coordinates for Spain
 
   return (

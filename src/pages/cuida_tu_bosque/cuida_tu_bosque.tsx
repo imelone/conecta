@@ -3,6 +3,9 @@ import Map from "../../components/maps/Map";
 import SidenavPane from "../../components/sidenav_pane/sidenav_pane";
 import TownTreeMenu from "../../components/town_tree_menu/town_tree_menu_screen";
 import L, { LatLngTuple } from "leaflet"; // Make sure L is imported for the map type
+import "./cuida_tu_bosque.css";
+import "leaflet/dist/leaflet.css";
+import DataAnalysisCuidaTuBosque from "../../components/data_analisis_cuida_tu_bosque/data_analisis_cuida_tu_bosque_screen";
 
 interface GeoJsonLayer {
   toggleName: string;
@@ -19,6 +22,8 @@ const CuidaTuBosque: React.FC = () => {
   );
   const [townsData, setTownsData] = useState<any>(null);
   const [selectedTown, setSelectedTown] = useState<string | null>(null);
+  const [isDataAnalysisCuidaTuBosqueOpen, setIsDataAnalysisCuidaTuBosqueOpen] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -32,6 +37,13 @@ const CuidaTuBosque: React.FC = () => {
     };
     loadData();
   }, []);
+  useEffect(() => {
+    // Check if any toggle is active
+    const anyToggleActive = Object.values(activeToggles).includes(true);
+    console.log("anyToggleActive: ", anyToggleActive);
+    // Set isDataAnalysisCuidaTuBosqueOpen based on toggle state
+    setIsDataAnalysisCuidaTuBosqueOpen(anyToggleActive);
+  }, [activeToggles]);
 
   const handleToggleOn = async (toggleName: string) => {
     try {
@@ -172,7 +184,9 @@ const CuidaTuBosque: React.FC = () => {
   ) => {
     return findParcelaInLevels(toggleName, townsList, levels);
   };
-  const createPopupContent = (data) => {
+  const createPopupContent = (data: {
+    properties: { catastrales: { image: any }; leyenda: { label: any } };
+  }) => {
     const image = data.properties?.catastrales?.image;
     const title = data.properties?.leyenda?.label;
 
@@ -219,6 +233,7 @@ const CuidaTuBosque: React.FC = () => {
       if (isActive) {
         console.log("isActive: ", isActive);
         console.log("Executing handleToggleOn");
+
         await handleToggleOn(toggleName);
       } else {
         console.log("Executing handleToggleOff");
@@ -268,10 +283,19 @@ const CuidaTuBosque: React.FC = () => {
           selectedProgram={"cuida-tu-bosque"}
           programsInfo={undefined}
           sideBarSelectedOption={undefined}
-          // handleMunicipioToggleClick={handleMunicipioToggleClick}
         />
       </SidenavPane>
-      <Map mapRef={mapRef} /> {/* Pass the mapRef to Map component */}
+
+      <Map mapRef={mapRef} />
+      {isDataAnalysisCuidaTuBosqueOpen && (
+        <DataAnalysisCuidaTuBosque
+          isOpen={true}
+          dataForest={dataForest}
+          removeForestItem={removeForestItem}
+          handleToggleClick={handleToggleClick}
+          activeToggles={activeToggles}
+        />
+      )}
     </div>
   );
 };
