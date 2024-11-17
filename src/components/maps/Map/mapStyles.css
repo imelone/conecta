@@ -76,3 +76,9 @@ html, body, #root, .layout, .content {
 .leaflet-container {
   height: 100% !important;
 }
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+  display:none;
+}
+.gmnoprint div {
+  background:none !important;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./tree_menu.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
 
 interface AccordionProps {
   title: any;
@@ -19,9 +20,10 @@ export const TreeMenu: React.FC<AccordionProps> = ({
   sideBarSelectedOption,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     setIsOpen(false);
-  }, [selectedProgram, sideBarSelectedOption]);
+  }, [location]);
 
   const toggleContent = () => {
     setIsOpen((prev) => !prev);

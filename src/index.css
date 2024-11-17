@@ -69,3 +69,6 @@ li {
   unicode-bidi: isolate;
   margin:0.2rem;
 }
+body {
+  font-family: 'arial', sans-serif; /* Replace with your chosen font */
+}

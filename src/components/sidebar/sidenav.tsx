@@ -30,20 +30,32 @@ const Sidebar: React.FC = () => {
 
   const handleMenuClick = (pane: string) => {
     setActivePane(pane);
-    if (pane === "district") {
-      setSubmenuVisible(true); // Show the submenu for "district"
-      setIsSidenavPaneVisible(true); // Keep sidebar expanded when district is clicked
-    } else {
-      setSubmenuVisible(false); // Hide the submenu for other panes
-      setIsSidenavPaneVisible(true); // Keep sidebar expanded for "home" and "settings"
+
+    switch (pane) {
+      case "home":
+        navigate("/home");
+        setSubmenuVisible(false);
+        break;
+      case "district":
+        navigate("/district");
+        setSubmenuVisible(true);
+        break;
+      case "settings":
+        navigate("/settings");
+        setSubmenuVisible(false);
+        break;
+      default:
+        break;
     }
+
+    setIsSidenavPaneVisible(true); // Ensure the sidebar stays visible
   };
 
   const handleProgramClick = (comunidadArchivo: string) => {
-    setSubmenuVisible(false); // Hide the submenu when a program is clicked
+    setSubmenuVisible(false);
     setIsSidenavPaneVisible(false); // Collapse sidebar when a program is clicked
     navigate(`/program/${comunidadArchivo}`);
-    setActivePane(""); // Hide the entire district pane once a program is clicked
+    setActivePane(""); // Clear active pane
   };
 
   return (
@@ -66,7 +78,6 @@ const Sidebar: React.FC = () => {
           </div>
           <li>
             <a
-              href="#home"
               role="tab"
               className={activePane === "home" ? "active" : ""}
               onClick={() => handleMenuClick("home")}
@@ -76,7 +87,6 @@ const Sidebar: React.FC = () => {
           </li>
           <li>
             <a
-              href="#district"
               role="tab"
               className={activePane === "district" ? "active" : ""}
               onClick={() => handleMenuClick("district")}
@@ -86,7 +96,6 @@ const Sidebar: React.FC = () => {
           </li>
           <li>
             <a
-              href="#settings"
               role="tab"
               className={activePane === "settings" ? "active" : ""}
               onClick={() => handleMenuClick("settings")}

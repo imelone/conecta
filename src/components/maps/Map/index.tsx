@@ -7,6 +7,7 @@ import {
   ScaleControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css"; // Import Leaflet's CSS for basic styling
+import { Layers } from "./Layers";
 
 // Define the Map component
 const Map: React.FC<{ mapRef?: React.RefObject<L.Map> }> = ({ mapRef }) => {
@@ -27,6 +28,7 @@ const Map: React.FC<{ mapRef?: React.RefObject<L.Map> }> = ({ mapRef }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
+        <Layers />
         <ScaleControl position="bottomright" />
       </MapContainer>
     </div>

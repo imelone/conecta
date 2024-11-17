@@ -3,12 +3,23 @@ import Map from "../../components/maps/Map";
 import SidenavPane from "../../components/sidenav_pane/sidenav_pane";
 import CertificacionesSideNav from "../../components/certificaciones_sidenav/certificaciones_sidenav_screen";
 import DataAnalysisCertificaciones from "../../components/data_analisis_certificaciones/data_analisis_certificaciones_screen";
+import { useLocation } from "react-router-dom";
 
 const Certificaciones: React.FC = () => {
-  // State to store the data loaded from the JSON file
   const [data, setData] = useState<any>(undefined);
+  const [isDataAnalysisCertificacionesOpen, setIsDataAnalysisCertificaciones] =
+    useState<boolean>(false); // Initially closed
+  const location = useLocation();
 
-  // Load the JSON data asynchronously when the component mounts
+  useEffect(() => {
+    // Open the component only if the current route is for Certificaciones
+    if (location.pathname.includes("certificaciones")) {
+      setIsDataAnalysisCertificaciones(true);
+    } else {
+      setIsDataAnalysisCertificaciones(false);
+    }
+  }, [location]);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -20,7 +31,7 @@ const Certificaciones: React.FC = () => {
     };
 
     loadData();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []);
 
   return (
     <div id="map">
@@ -28,7 +39,10 @@ const Certificaciones: React.FC = () => {
         <CertificacionesSideNav />
       </SidenavPane>
       <Map />
-      <DataAnalysisCertificaciones isOpen={true} data={data} />
+      <DataAnalysisCertificaciones
+        isOpen={isDataAnalysisCertificacionesOpen}
+        data={data}
+      />
     </div>
   );
 };

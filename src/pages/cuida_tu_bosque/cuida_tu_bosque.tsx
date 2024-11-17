@@ -26,7 +26,6 @@ const CuidaTuBosque: React.FC = () => {
   const [dataForest, setDataForest] = useState([]);
   const mapRef = useRef<L.Map | null>(null); // Initialize mapRef as L.Map or null
   const [geoJsonLayers, setGeoJsonLayers] = useState<GeoJsonLayer[]>([]);
-  //const [data, setData] = useState<any>(undefined);
   const location = useLocation();
   const [activeToggles, setActiveToggles] = useState<Record<string, boolean>>(
     {}
@@ -34,17 +33,19 @@ const CuidaTuBosque: React.FC = () => {
   const [townsData, setTownsData] = useState<any>(null);
   const [isDataAnalysisCuidaTuBosqueOpen, setIsDataAnalysisCuidaTuBosqueOpen] =
     useState<boolean>(false);
+  const resetState = () => {
+    // Reset any necessary state
+    setDataForest([]);
+    setGeoJsonLayers([]);
+    setActiveToggles({});
+    setIsDataAnalysisCuidaTuBosqueOpen(false);
+    cleanupLayers();
+  };
+
   useEffect(() => {
     resetState();
   }, [location]);
 
-  const resetState = () => {
-    // Reset any necessary state
-    setDataForest([]); // For example
-    setGeoJsonLayers([]);
-    setActiveToggles({});
-    setIsDataAnalysisCuidaTuBosqueOpen(false);
-  };
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -57,6 +58,7 @@ const CuidaTuBosque: React.FC = () => {
     };
     loadData();
   }, []);
+
   useEffect(() => {
     // Check if any toggle is active
     const anyToggleActive = Object.values(activeToggles).includes(true);
@@ -64,6 +66,15 @@ const CuidaTuBosque: React.FC = () => {
     // Set isDataAnalysisCuidaTuBosqueOpen based on toggle state
     setIsDataAnalysisCuidaTuBosqueOpen(anyToggleActive);
   }, [activeToggles]);
+
+  const cleanupLayers = () => {
+    geoJsonLayers.forEach((layer) => {
+      if (mapRef.current) {
+        mapRef.current.removeLayer(layer.layer); // Remove the actual layer object (not GeoJsonLayer)
+      }
+    });
+    setGeoJsonLayers([]); // Clears the GeoJSON state
+  };
 
   const handleToggleOn = async (toggleName: string) => {
     try {

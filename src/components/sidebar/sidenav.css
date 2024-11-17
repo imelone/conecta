@@ -38,7 +38,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 96%;
 }
 
 .leaflet-sidebar .leaflet-sidebar-tabs li a {
@@ -271,4 +271,12 @@ input:checked + .slider:before {
 }
 .sidebar-pane {
   padding: 0;
+}
+.program-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.program-item:hover {
+  background-color: #f0f0f0; /* Optional: Highlight effect on hover */
 }
