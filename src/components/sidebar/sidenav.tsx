@@ -15,9 +15,9 @@ const CustomIcon = styled(FontAwesomeIcon)`
 
 const Sidebar: React.FC = () => {
   const [activePane, setActivePane] = useState<string>("home");
-  const [isSubmenuVisible, setSubmenuVisible] = useState<boolean>(true);
+  const [isSubmenuVisible, setSubmenuVisible] = useState<boolean>(false);
   const [isSidenavPaneVisible, setIsSidenavPaneVisible] =
-    useState<boolean>(true);
+    useState<boolean>(false); // Sidebar starts collapsed
   const navigate = useNavigate();
 
   const programs = [
@@ -29,26 +29,26 @@ const Sidebar: React.FC = () => {
   ];
 
   const handleMenuClick = (pane: string) => {
-    setActivePane(pane);
-
-    switch (pane) {
-      case "home":
-        navigate("/home");
-        setSubmenuVisible(false);
-        break;
-      case "district":
-        navigate("/district");
+    if (pane === "districts") {
+      if (activePane === "districts") {
+        // Toggle visibility when "district" is clicked again
+        setIsSidenavPaneVisible(!isSidenavPaneVisible);
+        setSubmenuVisible(!isSidenavPaneVisible);
+      } else {
+        setIsSidenavPaneVisible(true);
         setSubmenuVisible(true);
-        break;
-      case "settings":
-        navigate("/settings");
-        setSubmenuVisible(false);
-        break;
-      default:
-        break;
-    }
+        setActivePane("districts");
+        navigate("/districts");
+      }
+    } else {
+      // Handle other panes
+      setActivePane(pane);
+      setIsSidenavPaneVisible(false); // Collapse sidebar for other panes
+      setSubmenuVisible(false);
 
-    setIsSidenavPaneVisible(true); // Ensure the sidebar stays visible
+      if (pane === "home") navigate("/home");
+      if (pane === "settings") setIsSidenavPaneVisible(!isSidenavPaneVisible);
+    }
   };
 
   const handleProgramClick = (comunidadArchivo: string) => {
@@ -88,8 +88,8 @@ const Sidebar: React.FC = () => {
           <li>
             <a
               role="tab"
-              className={activePane === "district" ? "active" : ""}
-              onClick={() => handleMenuClick("district")}
+              className={activePane === "districts" ? "active" : ""}
+              onClick={() => handleMenuClick("districts")}
             >
               <CustomIcon icon={faMap} size="2x" />
             </a>
@@ -119,10 +119,10 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* District Pane with Programs */}
-        {isSubmenuVisible && activePane === "district" && (
+        {isSubmenuVisible && activePane === "districts" && (
           <div
             className={`sidebar-pane ${
-              activePane === "district" ? "active" : ""
+              activePane === "districts" ? "active" : ""
             }`}
             id="district"
           >

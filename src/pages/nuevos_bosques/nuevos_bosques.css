@@ -1,0 +1,24 @@
+.popup-image {
+    max-width: 100%; /* Image takes up the full width of the container */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: contain; /* Ensures the image is scaled properly */
+  }
+  
+  .image-container {
+    max-width: 100%; /* Increased size for the container */
+    max-height: 100%; /* Increased size for the container */
+    overflow: hidden; /* Prevents overflow */
+   
+  }
+  
+  .leaflet-popup-content-wrapper {
+    text-align: center;
+    width: 370px; /* Adjusts popup width to auto to fit content */
+    max-width: 500px; /* Optionally set a max-width for the popup */
+    min-width: 300px; /* Optionally set a minimum width for the popup */
+    padding: 10px; /* Optional: Add padding inside the popup */
+  }
+  .leaflet-popup-content{
+    margin: 0;
+  }
+  

@@ -9,6 +9,7 @@ interface TownListProps {
   activeToggles: any;
   selectedProgram: any;
   programsInfo: any;
+  sectionImg: string;
   sideBarSelectedOption: any;
 }
 
@@ -20,38 +21,11 @@ const TownTreeMenu: React.FC<TownListProps> = ({
   activeToggles,
   selectedProgram,
   programsInfo,
+  sectionImg,
   sideBarSelectedOption,
 }) => {
-  const [selectedProgramName, setSelectedProgramName] = useState("");
   console.log("communitiesData:", communitiesData);
-  const loadTownsData = async (selectedProgram: string) => {
-    try {
-      const data = await import(
-        `../../data/listado_de_programas/programs.json`
-      );
-      const programData = data.default || data;
-
-      const selectedProgramData = programData.find(
-        (program: any) => program.comunidadArchivo === selectedProgram
-      );
-
-      if (selectedProgramData) {
-        setSelectedProgramName(selectedProgramData.programa);
-      } else {
-        console.log("No matching program found for:", selectedProgram);
-      }
-    } catch (error) {
-      console.error("Error loading towns data:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (selectedProgram) {
-      loadTownsData(selectedProgram);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProgram]);
+  console.log("selectedProgram:", selectedProgram);
 
   return (
     <div className={`${styles.scrollContainer} ${styles.noHorizontalScroll}`}>
@@ -63,12 +37,12 @@ const TownTreeMenu: React.FC<TownListProps> = ({
             marginBottom: "1rem",
           }}
         >
-          {selectedProgramName}
+          {selectedProgram}
         </h3>
 
         <div className={styles.logoContainer}>
           <img
-            src="/assets/images/sections_menu_main/cuida_tu_bosque_main_sin_marco.png"
+            src={`/assets/images/sections_menu_main/${sectionImg}.png`}
             alt="Logo"
             className="sidebar-logo-image"
             width={300}

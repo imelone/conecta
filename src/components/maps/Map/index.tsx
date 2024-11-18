@@ -6,10 +6,9 @@ import {
   ZoomControl,
   ScaleControl,
 } from "react-leaflet";
-import "leaflet/dist/leaflet.css"; // Import Leaflet's CSS for basic styling
+import "leaflet/dist/leaflet.css";
 import { Layers } from "./Layers";
 
-// Define the Map component
 const Map: React.FC<{ mapRef?: React.RefObject<L.Map> }> = ({ mapRef }) => {
   const coord: [number, number] = [40.4637, -3.7492]; // Default coordinates for Spain
 
@@ -21,13 +20,11 @@ const Map: React.FC<{ mapRef?: React.RefObject<L.Map> }> = ({ mapRef }) => {
         zoom={6.4}
         zoomControl={false}
         scrollWheelZoom={false}
-        ref={mapRef} // Map reference passed here
+        attributionControl={false}
+        ref={mapRef}
       >
         <ZoomControl position="topright" />
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Layers />
         <ScaleControl position="bottomright" />
       </MapContainer>

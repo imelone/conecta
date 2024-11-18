@@ -280,3 +280,7 @@ input:checked + .slider:before {
 .program-item:hover {
   background-color: #f0f0f0; /* Optional: Highlight effect on hover */
 }
+.leaflet-sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+}

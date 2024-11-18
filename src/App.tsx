@@ -20,6 +20,7 @@ const App: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/districts" element={<Districts />} />
           <Route path="/settings" element={<Settings />} />
           <Route

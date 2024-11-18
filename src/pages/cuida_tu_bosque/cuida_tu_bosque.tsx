@@ -31,6 +31,9 @@ const CuidaTuBosque: React.FC = () => {
     {}
   );
   const [townsData, setTownsData] = useState<any>(null);
+  const [programDescription, setProgramDescription] = useState<any>(null);
+  const [sectionImg, setSectionImg] = useState<any>(null);
+
   const [isDataAnalysisCuidaTuBosqueOpen, setIsDataAnalysisCuidaTuBosqueOpen] =
     useState<boolean>(false);
   const resetState = () => {
@@ -51,7 +54,9 @@ const CuidaTuBosque: React.FC = () => {
       try {
         const data = await import("../../data/programas/cuida-tu-bosque.json");
         setTownsData(data.default[1].distritos); // Set the loaded data to the state
-        console.log("data:", data.default[1]);
+        setProgramDescription(data.default[0].descripcion);
+        setSectionImg(data?.default[0]?.image);
+        console.log("data:", data.default[0]);
       } catch (error) {
         console.error("Error loading data:", error);
       }
@@ -315,8 +320,9 @@ const CuidaTuBosque: React.FC = () => {
           communitiesData={townsData}
           handleToggleClick={handleToggleClick}
           activeToggles={activeToggles}
-          selectedProgram={"cuida-tu-bosque"}
-          programsInfo={undefined}
+          selectedProgram={"CUIDA TU BOSQUE"}
+          programsInfo={programDescription}
+          sectionImg={sectionImg}
           sideBarSelectedOption={undefined}
         />
       </SidenavPane>
