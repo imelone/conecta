@@ -20,7 +20,6 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
   const {
     activeTab,
     handleTabClick,
-    handleClose,
     isMinimized,
     data: municipioData,
     setIsMinimized,

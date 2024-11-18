@@ -1,12 +1,8 @@
 import React from "react";
-
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import styles from "./styles.module.css";
-
 import { useDataAnalysisNuevosBosquesViewModel } from "./data_analisis_nuevos_bosques_view_model"; // Adjust the import path as necessary
-
 import DraggableModal from "../draggable_modal/draggable_modal";
-import AreaInfoComponent from "../dataAreaInfo";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -25,13 +21,11 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
   const {
     activeTab,
     handleTabClick,
-    handleClose,
     rowsCatastrales,
     rowsIndicadores,
     isMinimized,
     setIsMinimized,
   } = useDataAnalysisNuevosBosquesViewModel(
-    isOpen,
     dataForest,
     handleToggleClick,
     removeForestItem

@@ -20,12 +20,6 @@ export const useDataAnalysisAulaVerdeViewModel = (isOpen: any, data: any) => {
     setActiveTab(tabName);
   };
 
-  const handleClose = (areaName: any) => {
-    // removeForestItem(areaName);
-  };
-
-  // Initialize arrays to hold the values
-  console.log("data aula verde: ", data);
   const certificacionEspaciosVerdes = (data && data[0]) || {};
   const certificacionHotelEcologico = (data && data[1]) || {};
   const sostenibilidadTurismo = (data && data[2]) || {};
@@ -33,7 +27,6 @@ export const useDataAnalysisAulaVerdeViewModel = (isOpen: any, data: any) => {
   return {
     activeTab,
     handleTabClick,
-    handleClose,
     data,
     certificacionEspaciosVerdes,
     certificacionHotelEcologico,

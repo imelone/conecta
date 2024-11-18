@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TreeMenu } from "../tree_menu/tree_menu"; // Adjust the import path
 import styles from "./styles.module.css";
-
-interface Parcel {
-  parcela: string;
-  properties?: { leyenda?: { name: string; label: string; color: string } };
-}
-
-interface Municipio {
-  municipio: string;
-  parcelas: Parcel[];
-}
-
-interface Provincia {
-  provincia: string;
-  municipios: Municipio[];
-}
-
-interface Community {
-  comunidad: string;
-  provincias: Provincia[];
-  descripcion: string[];
-}
 
 interface TownListProps {
   sectionMainImg: string;
   communitiesData: any[];
   secondaryImage: string;
-  onParcelClick: (parcel: string) => void;
+  onParcelClick?: (parcel: string) => void;
   handleToggleClick: (leyendaName: string) => void;
-  handleMunicipioToggleClick: (municipio: string) => void; // Updated parameter name
+  handleMunicipioToggleClick?: (municipio: string) => void; // Updated parameter name
   activeToggles: any;
   selectedProgram: any;
-  programsInfo: any;
+  programsInfo?: any;
   sideBarSelectedOption: any;
 }
 
@@ -40,9 +19,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
   sectionMainImg,
   communitiesData,
   secondaryImage,
-  onParcelClick,
   handleToggleClick,
-  handleMunicipioToggleClick,
   activeToggles,
   selectedProgram,
   programsInfo,
@@ -85,27 +62,9 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
         </div>
 
         <ul>
-          {programsInfo?.map(
-            (
-              item:
-                | string
-                | number
-                | bigint
-                | boolean
-                | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | Promise<React.AwaitedReactNode>
-                | null
-                | undefined,
-              idx: React.Key | null | undefined
-            ) => (
-              <li key={idx}>{item}</li>
-            )
-          )}
+          {programsInfo?.map((item: any, idx: React.Key | null | undefined) => (
+            <li key={idx}>{item}</li>
+          ))}
         </ul>
       </div>
 
@@ -124,14 +83,6 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
             >
               <ul className={styles.menu}>
                 {province?.municipios?.map((municipio: any) => {
-                  const municipioChecked =
-                    activeToggles[municipio.municipio] || false;
-
-                  // Handle municipio toggle
-                  const handleMunicipioClick = () => {
-                    handleMunicipioToggleClick(municipio.municipio);
-                  };
-
                   return (
                     <TreeMenu
                       sideBarSelectedOption={sideBarSelectedOption}
@@ -153,7 +104,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
                               }}
                             ></span> */}
                             <span className={styles.label}>
-                              {municipio.municipio}
+                              {municipio?.municipio}
                             </span>
                           </label>
                         </div>

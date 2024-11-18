@@ -5,7 +5,6 @@ import TownTreeMenu from "../../components/town_tree_menu/town_tree_menu_screen"
 import L, { LatLngTuple } from "leaflet"; // Make sure L is imported for the map type
 import "./nuevos_bosques.css";
 import "leaflet/dist/leaflet.css";
-import DataAnalysisCuidaTuBosque from "../../components/data_analisis_cuida_tu_bosque/data_analisis_cuida_tu_bosque_screen";
 import { useLocation } from "react-router-dom";
 import DataAnalysisNuevosBosquesMenu from "../../components/data_analisis_nuevos_bosques/data_analisis_nuevos_bosques_screen";
 

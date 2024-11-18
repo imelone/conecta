@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Map from "../../components/maps/Map";
 import SidenavPane from "../../components/sidenav_pane/sidenav_pane";
-import TownTreeMenu from "../../components/town_tree_menu/town_tree_menu_screen";
 import L, { LatLngTuple } from "leaflet"; // Make sure L is imported for the map type
 import "./sostenibilidad.css";
 import "leaflet/dist/leaflet.css";
-import DataAnalysisCuidaTuBosque from "../../components/data_analisis_cuida_tu_bosque/data_analisis_cuida_tu_bosque_screen";
 import { useLocation } from "react-router-dom";
-import DataAnalysisNuevosBosquesMenu from "../../components/data_analisis_nuevos_bosques/data_analisis_nuevos_bosques_screen";
 import SostenibilidadSidenav from "../../components/sostenibilidad_sidenav/sostenibilidad_sidenav";
 import DataAnalysisSostenibilidad from "../../components/data_analisis_sostenibilidad/data_analisis_sostenibilidad_screen";
 
@@ -34,7 +31,7 @@ const Sostenibilidad: React.FC = () => {
     {}
   );
   const [townsData, setTownsData] = useState<any>(null);
-  const [programDescription, setProgramDescription] = useState<any>(null);
+  // const [programDescription, setProgramDescription] = useState<any>(null);
   const [sectionImg, setSectionImg] = useState<any>(null);
   const [isDataAnalysisCuidaTuBosqueOpen, setIsDataAnalysisCuidaTuBosqueOpen] =
     useState<boolean>(false);
@@ -323,17 +320,10 @@ const Sostenibilidad: React.FC = () => {
           handleToggleClick={handleToggleClick}
           activeToggles={activeToggles}
           selectedProgram={"SOSTENIBILIDAD"}
-          programsInfo={programDescription}
           //  sectionImg={sectionImg}
           sideBarSelectedOption={undefined}
           sectionMainImg={sectionImg}
           secondaryImage={""}
-          onParcelClick={function (parcel: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          handleMunicipioToggleClick={function (municipio: string): void {
-            throw new Error("Function not implemented.");
-          }}
         />
       </SidenavPane>
 

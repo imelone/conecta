@@ -16,7 +16,6 @@ const DataAnalysisAulaVerde: React.FC<DataAnalysisMenuProps> = ({
   const {
     activeTab,
     handleTabClick,
-    handleClose,
     isMinimized,
     certificacionEspaciosVerdes,
     certificacionHotelEcologico,

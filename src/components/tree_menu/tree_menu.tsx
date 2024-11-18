@@ -16,8 +16,6 @@ export const TreeMenu: React.FC<AccordionProps> = ({
   title,
   children,
   level = 0,
-  selectedProgram,
-  sideBarSelectedOption,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();

@@ -38,8 +38,8 @@ export interface AreaData {
     };
   };
 }
+
 export const useDataAnalysisNuevosBosquesViewModel = (
-  isOpen: any,
   dataForest: AreaData[],
   handleToggleClick: any,
   removeForestItem: (areaName: string) => void
