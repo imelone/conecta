@@ -107,7 +107,7 @@
 }
 .sidebar-content .sidebar-pane {
   display: none;
-  height: 100%; /* Ensure each pane takes up full height */
+ 
 }
 
 .sidebar-content .sidebar-pane.active {
@@ -118,6 +118,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 5rem;
 }
 
 .sidebar-close {

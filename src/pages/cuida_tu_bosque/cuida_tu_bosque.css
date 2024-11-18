@@ -19,6 +19,7 @@
     padding: 10px; /* Optional: Add padding inside the popup */
   }
   .leaflet-popup-content{
+    width: 366px;
     margin: 0;
   }
   

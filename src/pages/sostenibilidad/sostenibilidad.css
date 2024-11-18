@@ -20,5 +20,6 @@
   }
   .leaflet-popup-content{
     margin: 0;
+    width: 366px;
   }
   

@@ -70,6 +70,8 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
                 style={{
                   fontSize: "1.2rem",
                   fontWeight: "bold",
+                  textAlign: "start",
+                  marginBottom: "0",
                 }}
               >
                 {municipio.municipio}
@@ -80,7 +82,13 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
                   activeTab === "metas" ? styles.active : ""
                 }`}
               >
-                <ul style={{ listStyleType: "none", padding: 0 }}>
+                <ul
+                  style={{
+                    listStyleType: "none",
+                    padding: 0,
+                    margin: "0.5rem 0",
+                  }}
+                >
                   {municipio.metas.map((meta, idx) => (
                     <li style={{ fontSize: "1rem" }} key={idx}>
                       {meta}

@@ -15,12 +15,13 @@
 
 /* Ensure the popup has a maximum width */
 .leaflet-popup-content-wrapper {
-  width: 370px; /* Adjust as needed */
+  width: 366px; /* Adjust as needed */
   text-align:end;
   margin-right: 0;
   padding-right: 0;
 }
 .leaflet-popup-content{
+  width: 366px !important;
    margin-right: 0;
   padding-right: 0;
 }
@@ -58,4 +59,12 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 .leaflet-control-attribution {
   display: none !important;
+}
+.leaflet-control-layers label {
+  display: block;
+  font-size: 13px;
+  font-size: 1.08333em;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }

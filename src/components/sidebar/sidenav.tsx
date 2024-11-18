@@ -29,25 +29,49 @@ const Sidebar: React.FC = () => {
   ];
 
   const handleMenuClick = (pane: string) => {
-    if (pane === "districts") {
-      if (activePane === "districts") {
-        // Toggle visibility when "district" is clicked again
-        setIsSidenavPaneVisible(!isSidenavPaneVisible);
-        setSubmenuVisible(!isSidenavPaneVisible);
-      } else {
-        setIsSidenavPaneVisible(true);
-        setSubmenuVisible(true);
-        setActivePane("districts");
-        navigate("/districts");
-      }
-    } else {
-      // Handle other panes
-      setActivePane(pane);
-      setIsSidenavPaneVisible(false); // Collapse sidebar for other panes
-      setSubmenuVisible(false);
+    switch (pane) {
+      case "districts":
+        if (activePane === "districts") {
+          // Toggle visibility when "districts" is clicked again
+          setIsSidenavPaneVisible(!isSidenavPaneVisible);
+          setSubmenuVisible(!isSidenavPaneVisible);
+        } else {
+          setIsSidenavPaneVisible(true);
+          setSubmenuVisible(true);
+          setActivePane("districts");
+          navigate("/districts");
+        }
+        break;
 
-      if (pane === "home") navigate("/home");
-      if (pane === "settings") setIsSidenavPaneVisible(!isSidenavPaneVisible);
+      case "home":
+        // Handle home pane
+        setActivePane("home");
+        setIsSidenavPaneVisible(false); // Collapse sidebar for home
+        setSubmenuVisible(false);
+        navigate("/home");
+        break;
+
+      case "settings":
+        // Toggle settings behavior
+        if (activePane === "settings") {
+          // If settings is already active, collapse it
+          setIsSidenavPaneVisible(!isSidenavPaneVisible);
+          setSubmenuVisible(!isSidenavPaneVisible);
+        } else {
+          // If settings is not active, expand sidebar and navigate to settings
+          setIsSidenavPaneVisible(true);
+          setSubmenuVisible(true);
+          setActivePane("settings");
+          navigate("/settings");
+        }
+        break;
+
+      default:
+        // Handle other panes
+        setActivePane(pane);
+        setIsSidenavPaneVisible(false); // Collapse sidebar for other panes
+        setSubmenuVisible(false);
+        break;
     }
   };
 
@@ -126,7 +150,9 @@ const Sidebar: React.FC = () => {
             }`}
             id="district"
           >
-            <h2 className="section-title">ACTUACIONES</h2>
+            <h2 style={{ marginBottom: "1rem", textAlign: "center" }}>
+              ACTUACIONES
+            </h2>
             <ul>
               {programs.map((program, index) => (
                 <li key={index}>
@@ -134,7 +160,9 @@ const Sidebar: React.FC = () => {
                     className="program-item"
                     onClick={() => handleProgramClick(program.comunidadArchivo)}
                   >
-                    {program.programa}
+                    <h3 style={{ margin: "0", textAlign: "center" }}>
+                      {program.programa}
+                    </h3>
                   </div>
                 </li>
               ))}

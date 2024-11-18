@@ -43,4 +43,6 @@
   margin-left: 2rem; /* Slightly more indentation for level 2 */
 }
 
-
+li{
+  text-align: left;
+}

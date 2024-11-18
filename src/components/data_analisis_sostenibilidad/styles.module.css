@@ -114,3 +114,7 @@
 .minimizeButton:hover {
   color: darkgrey;
 }
+.tabPane{
+  margin: 0;
+  padding: 0;
+}

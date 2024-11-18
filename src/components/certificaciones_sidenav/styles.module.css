@@ -147,3 +147,6 @@ input:checked + .slider:before {
   text-align: center;
   margin: 0 auto;
 }
+li{
+  text-align: left;
+}
