@@ -49,7 +49,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
   sideBarSelectedOption,
 }) => {
   return (
-    <div>
+    <div className={`${styles.scrollContainer} ${styles.noHorizontalScroll}`}>
       <div>
         <h3
           style={{

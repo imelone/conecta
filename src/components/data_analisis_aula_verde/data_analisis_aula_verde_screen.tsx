@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { useDataAnalysisAulaVerdeViewModel } from "./data_analisis_aula_verde_view_model";
-
+import DownloadIcon from "@mui/icons-material/Download";
 import DraggableModal from "../draggable_modal/draggable_modal";
 
 interface DataAnalysisMenuProps {
@@ -27,8 +27,11 @@ const DataAnalysisAulaVerde: React.FC<DataAnalysisMenuProps> = ({
   // Helper function to render download links
   const renderDownloadLinks = (items: { label: string; pdfUrl: string }[]) => {
     return items.map((item, index) => (
-      <li key={index}>
-        <a href={item.pdfUrl} download>
+      <li key={index} style={{ listStyle: "none", marginBottom: "8px" }}>
+        <a href={item.pdfUrl} download className={styles.link}>
+          <DownloadIcon
+            style={{ fontSize: "16px", marginRight: "8px" }} // Adjust icon size and spacing
+          />
           {item.label}
         </a>
       </li>

@@ -113,3 +113,14 @@
 .minimizeButton:hover {
   color: darkgrey;
 }
+.link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the parent element's text color */
+  display: flex; /* Align icon and text horizontally */
+  align-items: center; /* Center icon and text vertically */
+  gap: 8px; /* Add space between icon and text */
+}
+
+.link:hover {
+  color: #007bff; /* Optional: Add hover color */
+}
