@@ -41,14 +41,14 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
   if (!isOpen) return null;
 
   const columnsDatosCatastrales: GridColDef[] = [
-    { field: "bosque", headerName: "BOSQUE", width: 150 },
+    { field: "bosque", headerName: "BOSQUE", width: 250 },
     { field: "refCat", headerName: "REF. CATASTRAL", width: 150 },
     { field: "poligono", headerName: "POLÍGONO", width: 150 },
     { field: "parcela", headerName: "PARCELA", width: 150 },
   ];
 
   const columnsIndicadores: GridColDef[] = [
-    { field: "bosque", headerName: "BOSQUE", width: 150 },
+    { field: "bosque", headerName: "BOSQUE", width: 250 },
     { field: "superficie", headerName: "SUPERFICIE", width: 20 },
     { field: "arboles", headerName: "ÁRBOLES", width: 20 },
     { field: "co2Capturado", headerName: "CO2 CAPTURADO (t.)", width: 20 },
@@ -129,7 +129,7 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
                     width:
                       col.field === "poligono" || col.field === "parcela"
                         ? 100
-                        : 200,
+                        : 300,
                     sortable: false,
                     filterable: false,
                     disableColumnMenu: true,
@@ -174,7 +174,8 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
                   rows={rowsIndicadores}
                   columns={columnsIndicadores.map((col) => ({
                     ...col,
-                    width: 160,
+                    width: col.field === "bosque" ? 300 : 100,
+                    // width: 160,
                     sortable: false,
                     filterable: false,
                     disableColumnMenu: true,
