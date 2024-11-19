@@ -7,6 +7,7 @@ import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
 import SostenibilidadSidenav from "../../components/sostenibilidad_sidenav/sostenibilidad_sidenav";
 import DataAnalysisSostenibilidad from "../../components/data_analisis_sostenibilidad/data_analisis_sostenibilidad_screen";
+import reduzcoCalculoImg from "../../../public/assets/images/sections_menu_main/reduzco_calculo_compenso_main.png";
 
 interface GeoJsonLayer {
   toggleName: string;
@@ -55,6 +56,7 @@ const Sostenibilidad: React.FC = () => {
         setTownsData(data.default[1].distritos); // Set the loaded data to the state
         //   setProgramDescription(data.default[0].descripcion);
         setSectionImg(data?.default[0]?.image);
+
         console.log("data:", data.default[0]);
       } catch (error) {
         console.error("Error loading data:", error);
@@ -323,7 +325,7 @@ const Sostenibilidad: React.FC = () => {
           //  sectionImg={sectionImg}
           sideBarSelectedOption={undefined}
           sectionMainImg={sectionImg}
-          secondaryImage={""}
+          secondaryImage={reduzcoCalculoImg}
         />
       </SidenavPane>
 

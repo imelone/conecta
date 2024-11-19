@@ -49,16 +49,6 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
               height={300}
             />
           )}
-          {secondaryImage && (
-            <img
-              src={`/assets/images/sections_menu_main/${secondaryImage}`}
-              alt="Logo2"
-              className="sidebar-logo-image"
-              // layout="intrinsic"
-              width={150}
-              height={150}
-            />
-          )}
         </div>
 
         <ul>
@@ -67,35 +57,35 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
           ))}
         </ul>
       </div>
-
-      {communitiesData?.map((communityData: any, index: any) => (
-        <TreeMenu
-          key={index}
-          title={communityData?.comunidad}
-          selectedProgram={selectedProgram}
-          sideBarSelectedOption={sideBarSelectedOption}
-        >
-          {communityData?.provincias?.map((province: any) => (
-            <TreeMenu
-              key={province.provincia}
-              title={province.provincia}
-              sideBarSelectedOption={sideBarSelectedOption}
-            >
-              <ul className={styles.menu}>
-                {province?.municipios?.map((municipio: any) => {
-                  return (
-                    <TreeMenu
-                      sideBarSelectedOption={sideBarSelectedOption}
-                      key={municipio.municipio}
-                      title={
-                        <div className={styles.municipioWrapper}>
-                          <label className={styles.toggleSwitch}>
-                            {/* <input
+      <div style={{ minHeight: "300px" }}>
+        {communitiesData?.map((communityData: any, index: any) => (
+          <TreeMenu
+            key={index}
+            title={communityData?.comunidad}
+            selectedProgram={selectedProgram}
+            sideBarSelectedOption={sideBarSelectedOption}
+          >
+            {communityData?.provincias?.map((province: any) => (
+              <TreeMenu
+                key={province.provincia}
+                title={province.provincia}
+                sideBarSelectedOption={sideBarSelectedOption}
+              >
+                <ul className={styles.menu}>
+                  {province?.municipios?.map((municipio: any) => {
+                    return (
+                      <TreeMenu
+                        sideBarSelectedOption={sideBarSelectedOption}
+                        key={municipio.municipio}
+                        title={
+                          <div className={styles.municipioWrapper}>
+                            <label className={styles.toggleSwitch}>
+                              {/* <input
                               type="checkbox"
                               checked={municipioChecked}
                               onChange={handleMunicipioClick}
                             /> */}
-                            {/* <span
+                              {/* <span
                               className={styles.slider}
                               style={{
                                 backgroundColor: municipioChecked
@@ -103,52 +93,64 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
                                   : "#ccc",
                               }}
                             ></span> */}
-                            <span className={styles.label}>
-                              {municipio?.municipio}
-                            </span>
-                          </label>
-                        </div>
-                      }
-                    >
-                      <ul className={styles.parcelList}>
-                        {municipio.parcelas.map((parcel: any) => {
-                          const leyenda = parcel.properties?.leyenda;
-                          const isChecked =
-                            activeToggles[leyenda?.name || ""] || false;
-                          return (
-                            <li key={leyenda?.name || parcel.parcela}>
-                              <label className={styles.toggleSwitch}>
-                                <input
-                                  type="checkbox"
-                                  checked={isChecked}
-                                  onChange={() =>
-                                    leyenda && handleToggleClick(leyenda.name)
-                                  }
-                                />
-                                <span
-                                  className={styles.slider}
-                                  style={{
-                                    backgroundColor: isChecked
-                                      ? leyenda?.color
-                                      : "#ccc",
-                                  }}
-                                ></span>
-                                <span className={styles.label}>
-                                  {leyenda?.label || "Unnamed Parcel"}
-                                </span>
-                              </label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </TreeMenu>
-                  );
-                })}
-              </ul>
-            </TreeMenu>
-          ))}
-        </TreeMenu>
-      ))}
+                              <span className={styles.label}>
+                                {municipio?.municipio}
+                              </span>
+                            </label>
+                          </div>
+                        }
+                      >
+                        <ul className={styles.parcelList}>
+                          {municipio.parcelas.map((parcel: any) => {
+                            const leyenda = parcel.properties?.leyenda;
+                            const isChecked =
+                              activeToggles[leyenda?.name || ""] || false;
+                            return (
+                              <li key={leyenda?.name || parcel.parcela}>
+                                <label className={styles.toggleSwitch}>
+                                  <input
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    onChange={() =>
+                                      leyenda && handleToggleClick(leyenda.name)
+                                    }
+                                  />
+                                  <span
+                                    className={styles.slider}
+                                    style={{
+                                      backgroundColor: isChecked
+                                        ? leyenda?.color
+                                        : "#ccc",
+                                    }}
+                                  ></span>
+                                  <span className={styles.label}>
+                                    {leyenda?.label || "Unnamed Parcel"}
+                                  </span>
+                                </label>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </TreeMenu>
+                    );
+                  })}
+                </ul>
+              </TreeMenu>
+            ))}
+          </TreeMenu>
+        ))}
+      </div>
+
+      {secondaryImage && (
+        <img
+          src={secondaryImage}
+          alt="Logo2"
+          className="sidebar-logo-image"
+          // layout="intrinsic"
+          width={150}
+          height={150}
+        />
+      )}
     </div>
   );
 };
