@@ -1,5 +1,6 @@
 .sidebar-pane-component{
     z-index: 500;
+    overflow-y: auto; 
 }
 .leaflet-sidebar-component {
     position: absolute;
@@ -13,4 +14,11 @@
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+    overflow-y: auto; 
   }
+  .sidebar-content {
+    flex: 1; /* Take all available space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1rem; /* Optional: padding for some space inside the content */
+    
+}
