@@ -57,7 +57,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
           ))}
         </ul>
       </div>
-      <div style={{ minHeight: "300px" }}>
+      <div style={{ minHeight: "250px" }}>
         {communitiesData?.map((communityData: any, index: any) => (
           <TreeMenu
             key={index}
