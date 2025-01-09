@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import sectionMainImg from "/assets/sections_menu_main/certificaciones_main.png";
+
 const CertificacionesSideNav: React.FC<any> = () => {
   return (
     <div>
