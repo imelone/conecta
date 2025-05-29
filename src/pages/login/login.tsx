@@ -16,7 +16,7 @@ const Login: React.FC = () => {
     setError('');
     
     if (!username || !password) {
-      setError('Please enter both username and password');
+      setError('Por favor, introduce usuario y contraseña');
       return;
     }
     
@@ -25,7 +25,7 @@ const Login: React.FC = () => {
     if (successful) {
       navigate('/home');
     } else {
-      setError('Invalid username or password');
+      setError('Usuario o contraseña incorrectos');
     }
   };
 
@@ -35,47 +35,47 @@ const Login: React.FC = () => {
         <div className="logo-container">
           <img src={Logo} alt="Conecta Futuro Logo" className="login-logo" />
         </div>
-        <h2>Login</h2>
+        <h2>Iniciar Sesión</h2>
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
           
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Usuario</label>
             <input
               type="text"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
+              placeholder="Introduce tu usuario"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Introduce tu contraseña"
             />
           </div>
           
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">Iniciar Sesión</button>
         </form>
         
         <div className="login-info">
-          <p><strong>Note:</strong> Login with one of the following users to access municipality-specific data:</p>
+          <p><strong>Nota:</strong> Inicia sesión con uno de los siguientes usuarios para acceder a datos específicos de municipios:</p>
           <ul>
-            <li>Username: <code>chiclana</code>, Municipality: Chiclana de Segura</li>
-            <li>Username: <code>santa_elena</code>, Municipality: Santa Elena</li>
-            <li>Username: <code>carboneros</code>, Municipality: Carboneros</li>
-            <li>Username: <code>admin</code>, Access: All municipalities</li>
+            <li>Usuario: <code>chiclana</code>, Municipio: Chiclana de Segura</li>
+            <li>Usuario: <code>santa_elena</code>, Municipio: Santa Elena</li>
+            <li>Usuario: <code>carboneros</code>, Municipio: Carboneros</li>
+            <li>Usuario: <code>admin</code>, Acceso: Todos los municipios</li>
           </ul>
-          <p>Passwords:</p>
+          <p>Contraseñas:</p>
           <ul>
-            <li>For municipality users: <code>password1</code>, <code>password2</code>, <code>password3</code> respectively</li>
-            <li>For admin user: <code>admin123</code></li>
+            <li>Para usuarios de municipios: <code>password1</code>, <code>password2</code>, <code>password3</code> respectivamente</li>
+            <li>Para usuario administrador: <code>admin123</code></li>
           </ul>
         </div>
       </div>
