@@ -9,6 +9,9 @@ import CuidaTuBosque from "./pages/cuida_tu_bosque/cuida_tu_bosque";
 import NuevosBosques from "./pages/nuevos_bosques/nuevos_bosques";
 import Sostenibilidad from "./pages/sostenibilidad/sostenibilidad";
 import AulaVerde from "./pages/aula_verde/aula_verde";
+import Login from "./pages/login/login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 // import Map from "./components/maps/Map";
 
 // import { MapContainer, TileLayer } from "react-leaflet";
@@ -16,24 +19,76 @@ import AulaVerde from "./pages/aula_verde/aula_verde";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Layout>
+    <AuthProvider>
+      <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/districts" element={<Districts />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/program/certificaciones"
-            element={<Certificaciones />}
-          />
-          <Route path="/program/cuida-tu-bosque" element={<CuidaTuBosque />} />
-          <Route path="/program/nuevos-bosques" element={<NuevosBosques />} />
-          <Route path="/program/sostenibilidad" element={<Sostenibilidad />} />
-          <Route path="/program/aula-verde" element={<AulaVerde />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Layout>
+                <Home />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/home" element={
+            <ProtectedRoute>
+              <Layout>
+                <Home />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/districts" element={
+            <ProtectedRoute>
+              <Layout>
+                <Districts />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <Layout>
+                <Settings />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/program/certificaciones" element={
+            <ProtectedRoute>
+              <Layout>
+                <Certificaciones />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/program/cuida-tu-bosque" element={
+            <ProtectedRoute>
+              <Layout>
+                <CuidaTuBosque />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/program/nuevos-bosques" element={
+            <ProtectedRoute>
+              <Layout>
+                <NuevosBosques />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/program/sostenibilidad" element={
+            <ProtectedRoute>
+              <Layout>
+                <Sostenibilidad />
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/program/aula-verde" element={
+            <ProtectedRoute>
+              <Layout>
+                <AulaVerde />
+              </Layout>
+            </ProtectedRoute>
+          } />
         </Routes>
-      </Layout>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 };
 export default App;

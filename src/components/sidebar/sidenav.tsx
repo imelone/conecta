@@ -8,6 +8,7 @@ import subMenuMainImg from "/assets/images/sections_menu_main/submenu_main.jpg";
 import { useNavigate } from "react-router-dom";
 import "leaflet-sidebar-v2/css/leaflet-sidebar.min.css";
 import "leaflet-sidebar-v2";
+import LogoutButton from "../LogoutButton";
 
 const CustomIcon = styled(FontAwesomeIcon)`
   font-size: 1.5rem;
@@ -185,7 +186,12 @@ const Sidebar: React.FC = () => {
           id="settings"
         >
           <h1 className="sidebar-header">Configuración</h1>
-          <p>Contenido de configuración</p>
+          <div className="settings-section">
+            <p>Contenido de configuración</p>
+            <div className="settings-actions">
+              <LogoutButton className="sidebar-logout-button" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import SostenibilidadSidenav from "../../components/sostenibilidad_sidenav/sostenibilidad_sidenav";
 import DataAnalysisSostenibilidad from "../../components/data_analisis_sostenibilidad/data_analisis_sostenibilidad_screen";
 import reduzcoCalculoImg from "../../../public/assets/images/sections_menu_main/reduzco_calculo_compenso_main.png";
+import { useMunicipioFilter } from "../../hooks/useMunicipioFilter";
 
 interface GeoJsonLayer {
   toggleName: string;
@@ -49,21 +50,59 @@ const Sostenibilidad: React.FC = () => {
     resetState();
   }, [location]);
 
+  // Use the municipio filter hook
+  const { userMunicipio } = useMunicipioFilter();
+
   useEffect(() => {
     const loadData = async () => {
       try {
         const data = await import("../../data/programas/sostenibilidad.json");
-        setTownsData(data.default[1].distritos); // Set the loaded data to the state
+        
+        // Apply municipality filter to the data
+        const distritosData = data.default[1].distritos;
+        
+        // Filter municipios based on user's assigned municipality
+        if (distritosData && distritosData.length > 0) {
+          const filteredData = distritosData.map(distrito => {
+            // Create a deep copy to avoid mutating the original data
+            const newDistrito = { ...distrito };
+            
+            // Filter at the provincia level
+            newDistrito.provincias = distrito.provincias.map(provincia => {
+              // Create a copy of the provincia
+              const newProvincia = { ...provincia };
+              
+              // Admin users (municipio="*") can see all municipalities
+              if (userMunicipio === "*") {
+                return newProvincia;
+              }
+              
+              // Filter municipios for regular users
+              newProvincia.municipios = provincia.municipios.filter(
+                (m: { municipio: string }) => m.municipio === userMunicipio
+              );
+              
+              return newProvincia;
+            });
+            
+            return newDistrito;
+          });
+          
+          setTownsData(filteredData);
+        } else {
+          setTownsData([]);
+        }
+        
         //   setProgramDescription(data.default[0].descripcion);
         setSectionImg(data?.default[0]?.image);
-
         console.log("data:", data.default[0]);
+        console.log("User municipio:", userMunicipio);
       } catch (error) {
         console.error("Error loading data:", error);
       }
     };
     loadData();
-  }, []);
+  }, [userMunicipio]);
 
   useEffect(() => {
     // Check if any toggle is active
