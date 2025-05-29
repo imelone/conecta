@@ -12,6 +12,7 @@ import AulaVerde from "./pages/aula_verde/aula_verde";
 import Login from "./pages/login/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import NotFound from "./components/NotFound";
 // import Map from "./components/maps/Map";
 
 // import { MapContainer, TileLayer } from "react-leaflet";
@@ -86,6 +87,8 @@ const App: React.FC = () => {
               </Layout>
             </ProtectedRoute>
           } />
+          {/* Catch-all route for handling URLs that don't match any defined routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </AuthProvider>
