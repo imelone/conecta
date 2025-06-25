@@ -23,10 +23,22 @@ export const useDataAnalysisCertificacionesViewModel = (
     setActiveTab(tabName);
   };
 
+  // Define colors for each certification type 
+  const certificationColors = {
+    iso: "#4CAF50",     // Green
+    sicted: "#2196F3",  // Blue
+    caae: "#FF9800"      // Orange
+  };
+
   // Initialize arrays to hold the values
   const iso = data?.[0] ?? {};
   const sicted = data?.[1] ?? {};
   const caae = data?.[2] ?? {};
+  
+  // Add colors to each certification
+  if (iso?.title) iso.color = certificationColors.iso;
+  if (sicted?.title) sicted.color = certificationColors.sicted;
+  if (caae?.title) caae.color = certificationColors.caae;
 
   return {
     activeTab,

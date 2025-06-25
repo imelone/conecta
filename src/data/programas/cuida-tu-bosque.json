@@ -243,6 +243,42 @@
                         "image": ""
                       }
                     }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.542500, 38.34000]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "GeolitParqueCientificoTecnologico",
+                        "label": "GEOLIT Parque Científico Tecnológico",
+                        "color": "#4B9CD3",
+                        "text": ""
+                      },
+                      "catastrales": {
+                        "text": "Parque Científico y Tecnológico",
+                        "image": "",
+                        "refCat": "23060A00100001",
+                        "poligono": "1",
+                        "parcela": "GEOLIT",
+                        "coordenadasX": "X:437.901,75",
+                        "coordenadasY": "Y:3.794.057,61"
+                      },
+                      "indicadores": {
+                        "superficie": "156,64",
+                        "arboles": "12500",
+                        "co2Capturado": "1875,00",
+                        "co2PorCapturar": "31,25",
+                        "factorHidrologico": "Alto"
+                      },
+                      "Copernico": {},
+                      "analisis": {
+                        "text": "",
+                        "image": ""
+                      }
+                    }
                   }
                 ]
               }

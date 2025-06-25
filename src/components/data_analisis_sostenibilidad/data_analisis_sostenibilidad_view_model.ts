@@ -48,6 +48,7 @@ export const useDataAnalysisSostenibilidadViewModel = (
   }
   const municipioData = data.map((item) => ({
     municipio: item.properties.leyenda.name,
+    color: item.properties.leyenda.color,
     metas: item.properties.metas || [],
     pilares: item.properties.pilares || [],
     actuaciones: item.properties.actuaciones || [],

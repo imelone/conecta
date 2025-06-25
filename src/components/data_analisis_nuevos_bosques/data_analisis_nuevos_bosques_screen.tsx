@@ -34,13 +34,59 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
   if (!isOpen) return null;
 
   const columnsDatosCatastrales: GridColDef[] = [
-    { field: "bosque", headerName: "BOSQUE", width: 150 },
+    { 
+      field: "bosque", 
+      headerName: "BOSQUE", 
+      width: 250,
+      renderCell: (params) => (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span 
+            style={{
+              display: "inline-block",
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: params.row.color || "#ccc",
+              marginRight: "8px",
+              border: "1px solid #000",
+              position: "relative",
+              top: "0px",
+              flexShrink: 0
+            }}
+          ></span>
+          <span>{params.value}</span>
+        </div>
+      ),
+    },
     { field: "refCat", headerName: "REF. CATASTRAL", width: 150 },
     // { field: "poligono", headerName: "POLÍGONO", width: 150 },
     // { field: "parcela", headerName: "PARCELA", width: 150 },
   ];
   const columnsIndicadores: GridColDef[] = [
-    { field: "bosque", headerName: "BOSQUE", width: 150 },
+    { 
+      field: "bosque", 
+      headerName: "BOSQUE", 
+      width: 250,
+      renderCell: (params) => (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span 
+            style={{
+              display: "inline-block",
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              backgroundColor: params.row.color || "#ccc",
+              marginRight: "8px",
+              border: "1px solid #000",
+              position: "relative",
+              top: "0px",
+              flexShrink: 0
+            }}
+          ></span>
+          <span>{params.value}</span>
+        </div>
+      ),
+    },
     // { field: "superficie", headerName: "SUPERFICIE", width: 20 },
     { field: "arboles_nuevos", headerName: "ÁRBOLES NUEVOS", width: 20 },
     { field: "co2PorCapturar", headerName: "CO2 X CAPTURAR (t.)", width: 20 },

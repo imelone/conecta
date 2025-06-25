@@ -64,6 +64,7 @@ export const useDataAnalysisCuidaTuBosqueViewModel = (
     dataForest?.map((areaData: AreaData, index: number) => ({
       id: index + 1,
       bosque: areaData.properties.leyenda.label,
+      color: areaData.properties.leyenda.color,
       refCat: areaData.properties.catastrales.refCat,
       poligono: areaData.properties.catastrales.poligono,
       parcela: areaData.properties.catastrales.parcela,
@@ -74,6 +75,7 @@ export const useDataAnalysisCuidaTuBosqueViewModel = (
     dataForest?.map((areaData: any, index: number) => ({
       id: index + 1,
       bosque: areaData.properties.leyenda.label,
+      color: areaData.properties.leyenda.color,
       superficie: areaData.properties.indicadores.superficie,
       arboles: areaData.properties.indicadores.arboles,
       co2Capturado: areaData.properties.indicadores.co2Capturado,

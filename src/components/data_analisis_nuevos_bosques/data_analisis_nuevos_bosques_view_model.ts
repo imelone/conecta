@@ -59,6 +59,7 @@ export const useDataAnalysisNuevosBosquesViewModel = (
     dataForest?.map((areaData: AreaData, index: number) => ({
       id: index + 1,
       bosque: areaData.properties.leyenda.label,
+      color: areaData.properties.leyenda.color, // Add color from leyenda
       refCat: areaData.properties.catastrales.refCat,
       poligono: areaData.properties.catastrales.poligono,
       parcela: areaData.properties.catastrales.parcela,
@@ -69,6 +70,7 @@ export const useDataAnalysisNuevosBosquesViewModel = (
     dataForest?.map((areaData: any, index: number) => ({
       id: index + 1,
       bosque: areaData.properties.leyenda.label,
+      color: areaData.properties.leyenda.color, // Add color from leyenda
       superficie: areaData.properties.indicadores.superficie,
       arboles_nuevos: areaData.properties.indicadores.arbolesNuevos,
       co2PorCapturar: areaData.properties.indicadores.co2PorCapturar,

@@ -70,7 +70,7 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
                   fontSize: "1.2rem",
                   fontWeight: "bold",
                   textAlign: "start",
-                  marginBottom: "0",
+                  marginBottom: "0"
                 }}
               >
                 {municipio.municipio}
