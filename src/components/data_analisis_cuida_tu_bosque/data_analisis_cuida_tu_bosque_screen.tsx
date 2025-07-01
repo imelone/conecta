@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import { useDataAnalysisCuidaTuBosqueViewModel } from "./data_analisis_cuida_tu_bosque_view_model"; // Adjust the import path as necessary
 
 import DraggableModal from "../draggable_modal/draggable_modal";
+import DownloadIcon from "@mui/icons-material/Download";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
     handleTabClick,
     rowsCatastrales,
     rowsIndicadores,
+    informacionParcelas,
     setIsMinimized,
     isMinimized,
   } = useDataAnalysisCuidaTuBosqueViewModel(
@@ -134,29 +136,79 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
           >
             <p style={{ fontWeight: "700", fontSize: "14px" }}>INDICADORES</p>
           </button>
+          <button
+            className={`${styles.tabLink} ${
+              activeTab === "informacion" ? styles.active : ""
+            }`}
+            onClick={() => handleTabClick("informacion")}
+          >
+            <p style={{ fontWeight: "700", fontSize: "14px" }}>
+              INFORMACIÓN
+            </p>
+          </button>
         </div>
 
         <div className={styles.tabContent}>
-          {/* <div
-            id="descripcion"
+          {/* Debug info for activeTab and parcelas */}
+          <div style={{ display: 'none' }}>
+            {activeTab && `Current active tab: ${activeTab}`}
+            {informacionParcelas && `Information parcelas: ${informacionParcelas.length}`}
+          </div>
+          <div
+            id="informacion"
             className={`${styles.tabPane} ${
-              activeTab === "descripcion" ? styles.active : ""
+              activeTab === "informacion" ? styles.active : ""
             }`}
+           
           >
-            {dataForest?.map((areaData: AreaData, index: any) => (
-              <AreaInfoComponent
-                key={index}
-                areaLabel={areaData.properties.leyenda.label}
-                areaName={areaData.properties.leyenda.name}
-                areaText={areaData.properties.leyenda.text}
-                areaColor={areaData.properties.leyenda.color}
-                onClose={handleClose}
-                removeForestItem={removeForestItem}
-                toggleName={areaData.properties.leyenda.name}
-                handleToggleClick={handleToggleClick}
-              />
+            {/* Only render features that have actual information data */}
+            {informacionParcelas.filter(parcela => parcela.showDetailedInfo).map((parcela, index) => (
+              <div key={index} className={styles.informacionItem}>
+                <h2 className={styles.informacionItemTitle}>
+                  <span 
+                    className={styles.colorIndicator}
+                    style={{
+                      backgroundColor: parcela.color
+                    }}
+                  ></span>
+                  {parcela.nombre}
+                 
+                </h2>
+                
+              
+                  <div className={styles.informacionContent}>
+                 
+                                        {/* Documentos están disponibles para todas las áreas */}
+                    {parcela.documentos && parcela.documentos.length > 0 && (
+                      <div>
+                        <h3 className={styles.documentTitle}>Documentos disponibles</h3>
+                        <ul className={styles.documentList}>
+                          {parcela.documentos.map((doc, docIndex) => (
+                            <li key={docIndex} className={styles.documentItem}>
+                              <a 
+                                href={doc.url} 
+                                className={styles.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download
+                              >
+                                <DownloadIcon
+                                  style={{ fontSize: "16px" }}
+                                />
+                                {doc.nombre}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+               
+                
+             
+              </div>
             ))}
-          </div> */}
+          </div>
 
           <div
             id="datos_catastrales"

@@ -273,6 +273,49 @@
                         "co2PorCapturar": "31,25",
                         "factorHidrologico": "Alto"
                       },
+                      "informacion": {
+                        "descripcion": "GEOLIT, Parque Científico y Tecnológico de Jaén, es un espacio de innovación y desarrollo sostenible que implementa prácticas ambientales responsables en su entorno natural.",
+                        "estadoConservacion": "Óptimo",
+                        "datosAdicionales": [
+                          { "texto": "Implementación de energías renovables en el campus" },
+                          { "texto": "Programa de reforestación activa" },
+                          { "texto": "Sistema de riego eficiente" }
+                        ],
+                        "emisionesDirectas": {
+                          "periodo": "2022,2023,2024",
+                          "datos": [
+                            {
+                              "edificioSede": "CTSA 1",
+                              "nombreGas": "R-404A",
+                              "formulaQuimica": "R-125/143a/134a",
+                              "pca": "4.728,0",
+                              "tipoEquipo": "",
+                              "capacidadEquipo": "",
+                              "recargaEquipo": "1,3",
+                              "emisionesKgCO2e": "5.910,0"
+                            }
+                          ],
+                          "totalEmisiones": "5.910,00"
+                        },
+                        "documentos": [
+                          {
+                            "nombre": "Informe Huella Geolit",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/Informe Huella Geolit.pdf"
+                          },
+                          {
+                            "nombre": "Emisiones Directas",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/EMISIONES DIRECTAS.pdf"
+                          },
+                          {
+                            "nombre": "Emisiones Indirectas",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/EMISIONES INDIRECTAS.pdf"
+                          }
+                        ]
+                      
+                    },
                       "Copernico": {},
                       "analisis": {
                         "text": "",
