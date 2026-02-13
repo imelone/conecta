@@ -75,7 +75,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
                         key={municipio.municipio}
                         title={
                           <div>
-                            <Box component="label" sx={toggleSwitch}>
+                            <Box component="label" className="toggle-switch" sx={toggleSwitch}>
                               <Box component="span" sx={label}>
                                 {municipio?.municipio}
                               </Box>
@@ -90,7 +90,7 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
                               activeToggles[leyenda?.name || ""] || false;
                             return (
                               <li key={leyenda?.name || parcel.parcela}>
-                                <Box component="label" sx={toggleSwitch}>
+                                <Box component="label" className="toggle-switch" sx={toggleSwitch}>
                                   <input
                                     type="checkbox"
                                     checked={isChecked}
