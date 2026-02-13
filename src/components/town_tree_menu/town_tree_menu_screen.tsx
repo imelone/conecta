@@ -1,11 +1,13 @@
 import React from "react";
-import { TreeMenu } from "../tree_menu/tree_menu"; // Adjust the import path
-import styles from "./styles.module.css";
+import { Box } from "@mui/material";
+import { TreeMenu } from "../tree_menu/tree_menu";
+import {
+  scrollContainer, logoContainer, menu, toggleSwitch, label, sidebarLogoImage,
+} from "./town_tree_menu_styles";
 
 interface TownListProps {
   communitiesData: any[];
   handleToggleClick: (leyendaName: string) => void;
-  // handleMunicipioToggleClick: (municipio: string) => void; // Updated parameter name
   activeToggles: any;
   selectedProgram: any;
   programsInfo: any;
@@ -15,42 +17,31 @@ interface TownListProps {
 
 const TownTreeMenu: React.FC<TownListProps> = ({
   communitiesData,
-
   handleToggleClick,
-  // handleMunicipioToggleClick,
   activeToggles,
   selectedProgram,
   programsInfo,
   sectionImg,
   sideBarSelectedOption,
 }) => {
-  console.log("communitiesData:", communitiesData);
-  console.log("selectedProgram:", selectedProgram);
-
   return (
-    <div className={`${styles.scrollContainer} ${styles.noHorizontalScroll}`}>
+    <Box sx={scrollContainer}>
       <div>
-        <h3
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "1rem",
-          }}
-        >
+        <h3 style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
           {selectedProgram}
         </h3>
 
-        <div className={styles.logoContainer}>
+        <Box sx={logoContainer}>
           <img
             src={`/assets/images/sections_menu_main/${sectionImg}.png`}
             alt="Logo"
-            className="sidebar-logo-image"
+            style={sidebarLogoImage}
             width={300}
             height={300}
           />
-        </div>
+        </Box>
 
-        <ul className={styles.noHorizontalScroll}>
+        <ul>
           {programsInfo?.map((item: any, idx: any) => (
             <li key={idx}>{item}</li>
           ))}
@@ -70,74 +61,56 @@ const TownTreeMenu: React.FC<TownListProps> = ({
                 title={province.provincia}
                 sideBarSelectedOption={sideBarSelectedOption}
               >
-                <ul className={styles.menu}>
+                <Box component="ul" sx={menu}>
                   {province?.municipios?.map((municipio: any) => {
-                    // const municipioChecked =
-                    //   activeToggles[municipio?.municipio] || false;
-
-                    // // Handle municipio toggle
-                    // const handleMunicipioClick = () => {
-                    //   handleMunicipioToggleClick(municipio.municipio);
-                    // };
-
                     return (
                       <TreeMenu
                         sideBarSelectedOption={sideBarSelectedOption}
                         key={municipio.municipio}
                         title={
-                          <div className={styles.municipioWrapper}>
-                            <label className={styles.toggleSwitch}>
-                              {/* <input
-                              type="checkbox"
-                              checked={municipioChecked}
-                              onChange={handleMunicipioClick}
-                            /> */}
-                              {/* <span
-                              className={styles.slider}
-                              style={{
-                                backgroundColor: municipioChecked
-                                  ? "#4CAF50"
-                                  : "#ccc",
-                              }}
-                            ></span> */}
-                              <span className={styles.label}>
+                          <div>
+                            <Box component="label" sx={toggleSwitch}>
+                              <Box component="span" sx={label}>
                                 {municipio.municipio}
-                              </span>
-                            </label>
+                              </Box>
+                            </Box>
                           </div>
                         }
                       >
-                        <ul className={styles.parcelList}>
+                        <ul>
                           {municipio.parcelas.map((parcel: any) => {
                             const leyenda = parcel.properties?.leyenda;
                             const isChecked =
                               activeToggles[leyenda?.name || ""] || false;
                             return (
                               <li key={leyenda?.name || parcel.parcela}>
-                                <label className={styles.toggleSwitch}>
+                                <Box component="label" sx={toggleSwitch}>
                                   <input
                                     type="checkbox"
                                     checked={isChecked}
                                     onChange={(e) => {
-                                      // Check the event object to prevent unnecessary re-renders
                                       if (!e.defaultPrevented) {
-                                        leyenda &&
-                                          handleToggleClick(leyenda.name);
+                                        leyenda && handleToggleClick(leyenda.name);
                                       }
                                     }}
+                                    style={{ opacity: 0, width: 0, height: 0, minWidth: '20px' }}
                                   />
                                   <span
-                                    className={styles.slider}
+                                    className="slider"
                                     style={{
-                                      backgroundColor: isChecked
-                                        ? leyenda?.color
-                                        : "#ccc",
+                                      position: 'relative',
+                                      cursor: 'pointer',
+                                      minWidth: '30px',
+                                      height: '16px',
+                                      backgroundColor: isChecked ? leyenda?.color : "#ccc",
+                                      borderRadius: '34px',
+                                      transition: 'background-color 0.4s',
                                     }}
                                   ></span>
-                                  <span className={styles.label}>
+                                  <Box component="span" sx={label}>
                                     {leyenda?.label || "Unnamed Parcel"}
-                                  </span>
-                                </label>
+                                  </Box>
+                                </Box>
                               </li>
                             );
                           })}
@@ -145,13 +118,13 @@ const TownTreeMenu: React.FC<TownListProps> = ({
                       </TreeMenu>
                     );
                   })}
-                </ul>
+                </Box>
               </TreeMenu>
             ))}
           </TreeMenu>
         ))}
       </div>
-    </div>
+    </Box>
   );
 };
 

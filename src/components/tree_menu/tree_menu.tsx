@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styles from "./tree_menu.module.css";
+import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
+import { container, header, icon, title, content, levelStyles } from "./tree_menu_styles";
 
 interface AccordionProps {
   title: any;
@@ -13,7 +14,7 @@ interface AccordionProps {
 }
 
 export const TreeMenu: React.FC<AccordionProps> = ({
-  title,
+  title: titleProp,
   children,
   level = 0,
 }) => {
@@ -27,18 +28,18 @@ export const TreeMenu: React.FC<AccordionProps> = ({
     setIsOpen((prev) => !prev);
   };
 
-  const levelClassName = `level-${level}`;
+  const levelSx = levelStyles[`level-${level}`] || {};
 
   return (
-    <div className={`${styles.container} ${styles[levelClassName]}`}>
-      <div className={styles.header} onClick={toggleContent}>
-        <span className={styles.icon}>
+    <Box sx={{ ...container as object, ...levelSx as object }}>
+      <Box sx={header} onClick={toggleContent}>
+        <Box component="span" sx={icon}>
           <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
-        </span>
-        <h3 className={styles.title}>{title}</h3>
-      </div>
-      {isOpen && <div className={styles.content}>{children}</div>}
-    </div>
+        </Box>
+        <Box component="h3" sx={title}>{titleProp}</Box>
+      </Box>
+      {isOpen && <Box sx={content}>{children}</Box>}
+    </Box>
   );
 };
 

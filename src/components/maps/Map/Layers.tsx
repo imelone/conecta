@@ -1,6 +1,5 @@
 import React from "react";
 import { LayersControl, TileLayer } from "react-leaflet";
-import "./mapStyles.css";
 const Layers: React.FC<any> = () => {
   return (
     <LayersControl position="topright">

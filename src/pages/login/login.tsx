@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import './login.css';
+import { Box } from '@mui/material';
 import Logo from '/assets/icons/logo.png';
+import {
+  loginContainer, loginCard, logoContainer, loginLogo,
+  heading, formGroup, loginButton, errorMessage, loginInfo,
+} from './login_styles';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -30,16 +34,16 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="logo-container">
-          <img src={Logo} alt="Conecta Futuro Logo" className="login-logo" />
-        </div>
-        <h2>Iniciar Sesión</h2>
+    <Box sx={loginContainer}>
+      <Box sx={loginCard}>
+        <Box sx={logoContainer}>
+          <img src={Logo} alt="Conecta Futuro Logo" style={loginLogo} />
+        </Box>
+        <Box component="h2" sx={heading}>Iniciar Sesión</Box>
         <form onSubmit={handleSubmit}>
-          {error && <div className="error-message">{error}</div>}
+          {error && <Box sx={errorMessage}>{error}</Box>}
           
-          <div className="form-group">
+          <Box sx={formGroup}>
             <label htmlFor="username">Usuario</label>
             <input
               type="text"
@@ -48,9 +52,9 @@ const Login: React.FC = () => {
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Introduce tu usuario"
             />
-          </div>
+          </Box>
           
-          <div className="form-group">
+          <Box sx={formGroup}>
             <label htmlFor="password">Contraseña</label>
             <input
               type="password"
@@ -59,12 +63,12 @@ const Login: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Introduce tu contraseña"
             />
-          </div>
+          </Box>
           
-          <button type="submit" className="login-button">Iniciar Sesión</button>
+          <Box component="button" type="submit" sx={loginButton}>Iniciar Sesión</Box>
         </form>
         
-        <div className="login-info">
+        <Box sx={loginInfo}>
           <p><strong>Nota:</strong> Inicia sesión con uno de los siguientes usuarios para acceder a datos específicos de municipios:</p>
           <ul>
             <li>Usuario: <code>chiclana</code>, Municipio: Chiclana de Segura</li>
@@ -77,9 +81,9 @@ const Login: React.FC = () => {
             <li>Para usuarios de municipios: <code>password1</code>, <code>password2</code>, <code>password3</code> respectivamente</li>
             <li>Para usuario administrador: <code>admin123</code></li>
           </ul>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

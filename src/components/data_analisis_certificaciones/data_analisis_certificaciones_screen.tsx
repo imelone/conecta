@@ -1,9 +1,11 @@
 import React from "react";
-import styles from "./styles.module.css";
-
-import { useDataAnalysisCertificacionesViewModel } from "./data_analisis_certificaciones_view_model"; // Adjust the import path as necessary
-
+import { Box } from "@mui/material";
+import { useDataAnalysisCertificacionesViewModel } from "./data_analisis_certificaciones_view_model";
 import DraggableModal from "../draggable_modal/draggable_modal";
+import {
+  dataAnalysisMenu, tabHeader, tabLink, tabLinkActive,
+  tabContent,
+} from "../shared/data_analysis_styles";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -23,8 +25,9 @@ const DataAnalysisCertificaciones: React.FC<DataAnalysisMenuProps> = ({
     caae,
     setIsMinimized,
   } = useDataAnalysisCertificacionesViewModel(isOpen, data);
-  console.log("isOpen: ", isOpen);
+
   if (!isOpen) return null;
+
   const renderItems = (items: string[]) => (
     <ul style={{ listStyleType: "none", paddingLeft: "20px" }}>
       {items?.map((item, index) => (
@@ -37,68 +40,38 @@ const DataAnalysisCertificaciones: React.FC<DataAnalysisMenuProps> = ({
 
   return (
     <DraggableModal isMinimized={isMinimized} setIsMinimized={setIsMinimized}>
-      <div className={styles.dataAnalysisMenu}>
-        <div className={styles.tabHeader}>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "iso" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("iso")}
-          >
+      <Box sx={dataAnalysisMenu}>
+        <Box sx={tabHeader}>
+          <Box component="button" sx={activeTab === "iso" ? tabLinkActive : tabLink} onClick={() => handleTabClick("iso")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>ISO 14001</p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "sicted" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("sicted")}
-          >
+          </Box>
+          <Box component="button" sx={activeTab === "sicted" ? tabLinkActive : tabLink} onClick={() => handleTabClick("sicted")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>SICTED</p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "caae" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("caae")}
-          >
+          </Box>
+          <Box component="button" sx={activeTab === "caae" ? tabLinkActive : tabLink} onClick={() => handleTabClick("caae")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>NORMA CAAE</p>
-          </button>
-        </div>
-        <div className={styles.tabContent}>
-          <div
-            id="iso"
-            className={`${styles.tabPane} ${
-              activeTab === "iso" ? styles.active : ""
-            }`}
-          >
+          </Box>
+        </Box>
+        <Box sx={tabContent}>
+          <div style={{ display: activeTab === "iso" ? 'block' : 'none' }}>
             <ul style={{ listStyleType: "none", padding: 0 }}>
               <li style={{ fontSize: "1rem" }}>{renderItems(iso?.items)}</li>
             </ul>
           </div>
 
-          <div
-            id="sicted"
-            className={`${styles.tabPane} ${
-              activeTab === "sicted" ? styles.active : ""
-            }`}
-          >
+          <div style={{ display: activeTab === "sicted" ? 'block' : 'none' }}>
             <ul style={{ listStyleType: "none", padding: 0 }}>
               <li style={{ fontSize: "1rem" }}>{renderItems(sicted?.items)}</li>
             </ul>
           </div>
 
-          <div
-            id="caae"
-            className={`${styles.tabPane} ${
-              activeTab === "caae" ? styles.active : ""
-            }`}
-          >
+          <div style={{ display: activeTab === "caae" ? 'block' : 'none' }}>
             <ul style={{ listStyleType: "none", padding: 0 }}>
               <li style={{ fontSize: "1rem" }}>{renderItems(caae?.items)}</li>
             </ul>
           </div>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </DraggableModal>
   );
 };

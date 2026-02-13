@@ -1,6 +1,4 @@
 import React from "react";
-import "../sidebar/sidenav.css";
-import "./sidenav_pane.css";
 interface SidenavPaneProps {
   activePane: string;
   paneId: string;

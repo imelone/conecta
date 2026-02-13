@@ -1,11 +1,11 @@
-// File: /components/shared/DraggableModal.tsx
 import React from "react";
+import { Box } from "@mui/material";
 import Draggable from "react-draggable";
-import styles from "./draggable_modal.module.css"; // Create CSS for this component
+import { modalContainer, draggableHandle, minimizeButton } from "./draggable_modal_styles";
 
 interface DraggableModalProps {
   isMinimized: boolean;
-  setIsMinimized: (minimized: boolean) => void; // Use more specific type
+  setIsMinimized: (minimized: boolean) => void;
   children: React.ReactNode;
 }
 
@@ -15,35 +15,28 @@ const DraggableModal: React.FC<DraggableModalProps> = ({
   children,
 }) => {
   const toggleMinimized = () => {
-    console.log("isMinimized: ", isMinimized);
-    const newMinimizedState = !isMinimized;
-    console.log("Toggling minimize state to:", newMinimizedState);
-    setIsMinimized(newMinimizedState);
+    setIsMinimized(!isMinimized);
   };
 
   return (
     <Draggable handle=".draggable-handle" bounds="parent">
-      <div className={styles.modalContainer}>
-        <div className={styles.header}>
-          <div className={`draggable-handle ${styles.draggableHandle}`}>
-            <button
+      <Box sx={modalContainer}>
+        <div>
+          <Box className="draggable-handle" sx={draggableHandle}>
+            <Box
+              component="button"
               onClick={toggleMinimized}
-              className={styles.minimizeButton}
+              sx={minimizeButton}
               aria-label={isMinimized ? "Expand modal" : "Minimize modal"}
             >
               {isMinimized ? "+" : "-"}
-            </button>
-            <span className={styles.title}></span>
-          </div>
+            </Box>
+          </Box>
         </div>
-        <div className={styles.content}>
-          {!isMinimized ? (
-            children
-          ) : (
-            <div className={styles.minimizedView}></div>
-          )}
+        <div>
+          {!isMinimized ? children : <div></div>}
         </div>
-      </div>
+      </Box>
     </Draggable>
   );
 };

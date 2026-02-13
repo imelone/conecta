@@ -1,12 +1,15 @@
 import React from "react";
-
+import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import styles from "./styles.module.css";
-
-import { useDataAnalysisCuidaTuBosqueViewModel } from "./data_analisis_cuida_tu_bosque_view_model"; // Adjust the import path as necessary
-
+import { useDataAnalysisCuidaTuBosqueViewModel } from "./data_analisis_cuida_tu_bosque_view_model";
 import DraggableModal from "../draggable_modal/draggable_modal";
 import DownloadIcon from "@mui/icons-material/Download";
+import {
+  dataAnalysisMenu, tabHeader, tabLink, tabLinkActive,
+  tabContent, gridContainer,
+  informacionItem, informacionItemTitle, colorIndicator,
+  informacionContent, documentTitle, documentList, documentItem, link,
+} from "../shared/data_analysis_styles";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -108,124 +111,63 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
 
   return (
     <DraggableModal isMinimized={isMinimized} setIsMinimized={setIsMinimized}>
-      <div className={styles.dataAnalysisMenu}>
-        <div className={styles.tabHeader}>
-          {/* <button
-            className={`${styles.tabLink} ${
-              activeTab === "descripcion" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("descripcion")}
-          >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>DESCRIPCION</p>
-          </button> */}
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "datos_catastrales" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("datos_catastrales")}
-          >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>
-              DATOS CATASTRALES
-            </p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "indicadores" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("indicadores")}
-          >
+      <Box sx={dataAnalysisMenu}>
+        <Box sx={tabHeader}>
+          <Box component="button" sx={activeTab === "datos_catastrales" ? tabLinkActive : tabLink} onClick={() => handleTabClick("datos_catastrales")}>
+            <p style={{ fontWeight: "700", fontSize: "14px" }}>DATOS CATASTRALES</p>
+          </Box>
+          <Box component="button" sx={activeTab === "indicadores" ? tabLinkActive : tabLink} onClick={() => handleTabClick("indicadores")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>INDICADORES</p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "informacion" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("informacion")}
-          >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>
-              INFORMACIÓN
-            </p>
-          </button>
-        </div>
+          </Box>
+          <Box component="button" sx={activeTab === "informacion" ? tabLinkActive : tabLink} onClick={() => handleTabClick("informacion")}>
+            <p style={{ fontWeight: "700", fontSize: "14px" }}>INFORMACIÓN</p>
+          </Box>
+        </Box>
 
-        <div className={styles.tabContent}>
-          {/* Debug info for activeTab and parcelas */}
-          <div style={{ display: 'none' }}>
-            {activeTab && `Current active tab: ${activeTab}`}
-            {informacionParcelas && `Information parcelas: ${informacionParcelas.length}`}
-          </div>
-          <div
-            id="informacion"
-            className={`${styles.tabPane} ${
-              activeTab === "informacion" ? styles.active : ""
-            }`}
-           
-          >
-            {/* Only render features that have actual information data */}
+        <Box sx={tabContent}>
+          <div style={{ display: activeTab === "informacion" ? 'block' : 'none' }}>
             {informacionParcelas.filter(parcela => parcela.showDetailedInfo).map((parcela, index) => (
-              <div key={index} className={styles.informacionItem}>
-                <h2 className={styles.informacionItemTitle}>
-                  <span 
-                    className={styles.colorIndicator}
-                    style={{
-                      backgroundColor: parcela.color
-                    }}
-                  ></span>
+              <Box key={index} sx={informacionItem}>
+                <Box component="h2" sx={informacionItemTitle}>
+                  <span style={{ ...colorIndicator, backgroundColor: parcela.color }}></span>
                   {parcela.nombre}
-                 
-                </h2>
-                
-              
-                  <div className={styles.informacionContent}>
-                 
-                                        {/* Documentos están disponibles para todas las áreas */}
-                    {parcela.documentos && parcela.documentos.length > 0 && (
-                      <div>
-                        <h3 className={styles.documentTitle}>Documentos disponibles</h3>
-                        <ul className={styles.documentList}>
-                          {parcela.documentos.map((doc, docIndex) => (
-                            <li key={docIndex} className={styles.documentItem}>
-                              <a 
-                                href={doc.url} 
-                                className={styles.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download
-                              >
-                                <DownloadIcon
-                                  style={{ fontSize: "16px" }}
-                                />
-                                {doc.nombre}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-               
-                
-             
-              </div>
+                </Box>
+                <Box sx={informacionContent}>
+                  {parcela.documentos && parcela.documentos.length > 0 && (
+                    <div>
+                      <Box component="h3" sx={documentTitle}>Documentos disponibles</Box>
+                      <Box component="ul" sx={documentList}>
+                        {parcela.documentos.map((doc: any, docIndex: number) => (
+                          <Box component="li" key={docIndex} sx={documentItem}>
+                            <Box
+                              component="a"
+                              href={doc.url}
+                              sx={link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              download
+                            >
+                              <DownloadIcon style={{ fontSize: "16px" }} />
+                              {doc.nombre}
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
+                    </div>
+                  )}
+                </Box>
+              </Box>
             ))}
           </div>
 
-          <div
-            id="datos_catastrales"
-            className={`${styles.tabPane} ${
-              activeTab === "datos_catastrales" ? styles.active : ""
-            }`}
-          >
+          <div style={{ display: activeTab === "datos_catastrales" ? 'block' : 'none' }}>
             {shouldShowGrid && (
-              <div className={styles.gridContainer}>
+              <Box sx={gridContainer}>
                 <DataGrid
                   rows={rowsCatastrales}
                   columns={columnsDatosCatastrales.map((col) => ({
                     ...col,
-                    width:
-                      col.field === "poligono" || col.field === "parcela"
-                        ? 100
-                        : 320,
+                    width: col.field === "poligono" || col.field === "parcela" ? 100 : 320,
                     sortable: false,
                     filterable: false,
                     disableColumnMenu: true,
@@ -234,44 +176,25 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
                   hideFooterPagination={true}
                   hideFooter={true}
                   sx={{
-                    boxShadow: 2,
-                    border: 0,
-                    borderColor: "primary.light",
-                    "& .MuiDataGrid-root": {
-                      border: "1px solid #ddd",
-                      borderCollapse: "collapse",
-                    },
-                    "& .MuiDataGrid-cell": {
-                      borderBottom: "1px solid #ddd",
-                      whiteSpace: "pre-line",
-                      overflowWrap: "break-word",
-                    },
-                    "& .MuiDataGrid-columnSeparator": {
-                      display: "block",
-                    },
-                    "& .MuiDataGrid-footer": {
-                      display: "none",
-                    },
+                    boxShadow: 2, border: 0, borderColor: "primary.light",
+                    "& .MuiDataGrid-root": { border: "1px solid #ddd", borderCollapse: "collapse" },
+                    "& .MuiDataGrid-cell": { borderBottom: "1px solid #ddd", whiteSpace: "pre-line", overflowWrap: "break-word" },
+                    "& .MuiDataGrid-columnSeparator": { display: "block" },
+                    "& .MuiDataGrid-footer": { display: "none" },
                   }}
                 />
-              </div>
+              </Box>
             )}
           </div>
 
-          <div
-            id="indicadores"
-            className={`${styles.tabPane} ${
-              activeTab === "indicadores" ? styles.active : ""
-            }`}
-          >
+          <div style={{ display: activeTab === "indicadores" ? 'block' : 'none' }}>
             {shouldShowGrid && (
-              <div className={styles.gridContainer}>
+              <Box sx={gridContainer}>
                 <DataGrid
                   rows={rowsIndicadores}
                   columns={columnsIndicadores.map((col) => ({
                     ...col,
                     width: col.field === "bosque" ? 320 : 100,
-                    // width: 160,
                     sortable: false,
                     filterable: false,
                     disableColumnMenu: true,
@@ -280,32 +203,18 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
                   hideFooterPagination={true}
                   hideFooter={true}
                   sx={{
-                    boxShadow: 2,
-                    border: 0,
-                    borderColor: "primary.light",
-                    "& .MuiDataGrid-root": {
-                      border: "1px solid #ddd",
-                      borderCollapse: "collapse",
-                    },
-
-                    "& .MuiDataGrid-cell": {
-                      borderBottom: "1px solid #ddd",
-                      whiteSpace: "pre-line",
-                      overflowWrap: "break-word",
-                    },
-                    "& .MuiDataGrid-columnSeparator": {
-                      display: "block",
-                    },
-                    "& .MuiDataGrid-footer": {
-                      display: "none",
-                    },
+                    boxShadow: 2, border: 0, borderColor: "primary.light",
+                    "& .MuiDataGrid-root": { border: "1px solid #ddd", borderCollapse: "collapse" },
+                    "& .MuiDataGrid-cell": { borderBottom: "1px solid #ddd", whiteSpace: "pre-line", overflowWrap: "break-word" },
+                    "& .MuiDataGrid-columnSeparator": { display: "block" },
+                    "& .MuiDataGrid-footer": { display: "none" },
                   }}
                 />
-              </div>
+              </Box>
             )}
           </div>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </DraggableModal>
   );
 };

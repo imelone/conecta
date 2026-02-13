@@ -1,8 +1,12 @@
 import React from "react";
+import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import styles from "./styles.module.css";
-import { useDataAnalysisNuevosBosquesViewModel } from "./data_analisis_nuevos_bosques_view_model"; // Adjust the import path as necessary
+import { useDataAnalysisNuevosBosquesViewModel } from "./data_analisis_nuevos_bosques_view_model";
 import DraggableModal from "../draggable_modal/draggable_modal";
+import {
+  tabHeader, tabLink, tabLinkActive,
+  tabContent, gridContainer,
+} from "../shared/data_analysis_styles";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -96,66 +100,18 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
 
   return (
     <DraggableModal isMinimized={isMinimized} setIsMinimized={setIsMinimized}>
-      <div className={styles.tabHeader}>
-        {/* <button
-          className={`${styles.tabLink} ${
-            activeTab === "Tab1" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("Tab1")}
-        >
-          <p style={{ fontWeight: "700", fontSize: "14px" }}>
-            PROGRAMA CUIDA TU BOSQUE
-          </p>
-        </button> */}
-        <button
-          className={`${styles.tabLink} ${
-            activeTab === "indicadores" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("indicadores")}
-        >
+      <Box sx={tabHeader}>
+        <Box component="button" sx={activeTab === "indicadores" ? tabLinkActive : tabLink} onClick={() => handleTabClick("indicadores")}>
           <p style={{ fontWeight: "700", fontSize: "14px" }}>INDICADORES</p>
-        </button>
-        <button
-          className={`${styles.tabLink} ${
-            activeTab === "datos_catastrales" ? styles.active : ""
-          }`}
-          onClick={() => handleTabClick("datos_catastrales")}
-        >
-          <p style={{ fontWeight: "700", fontSize: "14px" }}>
-            DATOS CATASTRALES
-          </p>
-        </button>
-      </div>
-      <div className={styles.tabContent}>
-        {/* <div
-          id="Tab1"
-          className={`${styles.tabPane} ${
-            activeTab === "Tab1" ? styles.active : ""
-          }`}
-        >
-          {dataForest?.map((areaData: AreaData, index: any) => (
-            <AreaInfoComponent
-              key={index}
-              areaLabel={areaData.properties.leyenda.label}
-              areaName={areaData.properties.leyenda.name}
-              areaText={areaData.properties.leyenda.text}
-              areaColor={areaData.properties.leyenda.color}
-              onClose={handleClose}
-              removeForestItem={removeForestItem}
-              // toggleName={areaData.properties.leyenda.name}
-              handleToggleClick={handleToggleClick} // Pass the handleToggleClick function
-            />
-          ))}
-        </div> */}
-
-        <div
-          id="indicadores"
-          className={`${styles.tabPane} ${
-            activeTab === "indicadores" ? styles.active : ""
-          }`}
-        >
+        </Box>
+        <Box component="button" sx={activeTab === "datos_catastrales" ? tabLinkActive : tabLink} onClick={() => handleTabClick("datos_catastrales")}>
+          <p style={{ fontWeight: "700", fontSize: "14px" }}>DATOS CATASTRALES</p>
+        </Box>
+      </Box>
+      <Box sx={tabContent}>
+        <div style={{ display: activeTab === "indicadores" ? 'block' : 'none' }}>
           {shouldShowGrid && (
-            <div className={styles.gridContainer}>
+            <Box sx={gridContainer}>
               <DataGrid
                 rows={rowsIndicadores}
                 columns={columnsIndicadores.map((col) => ({
@@ -169,37 +125,19 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
                 hideFooterPagination={true}
                 hideFooter={true}
                 sx={{
-                  boxShadow: 2,
-                  border: 2,
-                  borderColor: "primary.light",
-                  "& .MuiDataGrid-root": {
-                    border: "1px solid #ddd",
-                    borderCollapse: "collapse",
-                  },
-                  "& .MuiDataGrid-cell": {
-                    borderBottom: "1px solid #ddd",
-                    whiteSpace: "pre-line",
-                    overflowWrap: "break-word",
-                  },
-                  "& .MuiDataGrid-columnSeparator": {
-                    display: "block",
-                  },
-                  "& .MuiDataGrid-footer": {
-                    display: "none",
-                  },
+                  boxShadow: 2, border: 2, borderColor: "primary.light",
+                  "& .MuiDataGrid-root": { border: "1px solid #ddd", borderCollapse: "collapse" },
+                  "& .MuiDataGrid-cell": { borderBottom: "1px solid #ddd", whiteSpace: "pre-line", overflowWrap: "break-word" },
+                  "& .MuiDataGrid-columnSeparator": { display: "block" },
+                  "& .MuiDataGrid-footer": { display: "none" },
                 }}
               />
-            </div>
+            </Box>
           )}
         </div>
-        <div
-          id="datos_catastrales"
-          className={`${styles.tabPane} ${
-            activeTab === "datos_catastrales" ? styles.active : ""
-          }`}
-        >
+        <div style={{ display: activeTab === "datos_catastrales" ? 'block' : 'none' }}>
           {shouldShowGrid && (
-            <div className={styles.gridContainer}>
+            <Box sx={gridContainer}>
               <DataGrid
                 rows={rowsCatastrales}
                 columns={columnsDatosCatastrales.map((col) => ({
@@ -218,30 +156,17 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
                 hideFooterPagination={true}
                 hideFooter={true}
                 sx={{
-                  boxShadow: 2,
-                  border: 2,
-                  borderColor: "primary.light",
-                  "& .MuiDataGrid-root": {
-                    border: "1px solid #ddd",
-                    borderCollapse: "collapse",
-                  },
-                  "& .MuiDataGrid-cell": {
-                    borderBottom: "1px solid #ddd",
-                    whiteSpace: "pre-line",
-                    overflowWrap: "break-word",
-                  },
-                  "& .MuiDataGrid-columnSeparator": {
-                    display: "block",
-                  },
-                  "& .MuiDataGrid-footer": {
-                    display: "none",
-                  },
+                  boxShadow: 2, border: 2, borderColor: "primary.light",
+                  "& .MuiDataGrid-root": { border: "1px solid #ddd", borderCollapse: "collapse" },
+                  "& .MuiDataGrid-cell": { borderBottom: "1px solid #ddd", whiteSpace: "pre-line", overflowWrap: "break-word" },
+                  "& .MuiDataGrid-columnSeparator": { display: "block" },
+                  "& .MuiDataGrid-footer": { display: "none" },
                 }}
               />
-            </div>
+            </Box>
           )}
         </div>
-      </div>
+      </Box>
     </DraggableModal>
   );
 };

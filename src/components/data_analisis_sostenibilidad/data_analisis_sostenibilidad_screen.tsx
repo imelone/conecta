@@ -1,8 +1,11 @@
 import React from "react";
-import styles from "./styles.module.css";
-
+import { Box } from "@mui/material";
 import { useDataAnalysisSostenibilidadViewModel } from "./data_analisis_sostenibilidad_view_model";
 import DraggableModal from "../draggable_modal/draggable_modal";
+import {
+  dataAnalysisMenu, tabHeader, tabLink, tabLinkActive,
+  tabContent,
+} from "../shared/data_analysis_styles";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -34,101 +37,51 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
 
   return (
     <DraggableModal isMinimized={isMinimized} setIsMinimized={setIsMinimized}>
-      <div className={styles.dataAnalysisMenu}>
-        <div className={styles.tabHeader}>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "metas" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("metas")}
-          >
+      <Box sx={dataAnalysisMenu}>
+        <Box sx={tabHeader}>
+          <Box component="button" sx={activeTab === "metas" ? tabLinkActive : tabLink} onClick={() => handleTabClick("metas")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>METAS</p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "pilares" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("pilares")}
-          >
+          </Box>
+          <Box component="button" sx={activeTab === "pilares" ? tabLinkActive : tabLink} onClick={() => handleTabClick("pilares")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>PILARES</p>
-          </button>
-          <button
-            className={`${styles.tabLink} ${
-              activeTab === "actuaciones" ? styles.active : ""
-            }`}
-            onClick={() => handleTabClick("actuaciones")}
-          >
+          </Box>
+          <Box component="button" sx={activeTab === "actuaciones" ? tabLinkActive : tabLink} onClick={() => handleTabClick("actuaciones")}>
             <p style={{ fontWeight: "700", fontSize: "14px" }}>ACTUACIONES</p>
-          </button>
-        </div>
-        {/* {console.log("municipio: ", municipioData)} */}
-        <div className={styles.tabContent}>
+          </Box>
+        </Box>
+        <Box sx={{ ...tabContent as object, margin: '1rem' }}>
           {municipioData.map((municipio, index) => (
             <div key={index}>
-              <h2
-                style={{
-                  fontSize: "1.2rem",
-                  fontWeight: "bold",
-                  textAlign: "start",
-                  marginBottom: "0"
-                }}
-              >
+              <h2 style={{ fontSize: "1.2rem", fontWeight: "bold", textAlign: "start", marginBottom: "0" }}>
                 {municipio.municipio}
               </h2>
-              <div
-                id="metas"
-                className={`${styles.tabPane} ${
-                  activeTab === "metas" ? styles.active : ""
-                }`}
-              >
-                <ul
-                  style={{
-                    listStyleType: "none",
-                    padding: 0,
-                    margin: "0.5rem 0",
-                  }}
-                >
+              <div style={{ display: activeTab === "metas" ? 'block' : 'none' }}>
+                <ul style={{ listStyleType: "none", padding: 0, margin: "0.5rem 0" }}>
                   {municipio.metas.map((meta, idx) => (
-                    <li style={{ fontSize: "1rem" }} key={idx}>
-                      {meta}
-                    </li>
+                    <li style={{ fontSize: "1rem" }} key={idx}>{meta}</li>
                   ))}
                 </ul>
               </div>
 
-              <div
-                id="pilares"
-                className={`${styles.tabPane} ${
-                  activeTab === "pilares" ? styles.active : ""
-                }`}
-              >
+              <div style={{ display: activeTab === "pilares" ? 'block' : 'none' }}>
                 <ul style={{ listStyleType: "none", padding: 0 }}>
                   {municipio.pilares.map((pilar, idx) => (
-                    <li style={{ fontSize: "1rem" }} key={idx}>
-                      {pilar}
-                    </li>
+                    <li style={{ fontSize: "1rem" }} key={idx}>{pilar}</li>
                   ))}
                 </ul>
               </div>
 
-              <div
-                id="actuaciones"
-                className={`${styles.tabPane} ${
-                  activeTab === "actuaciones" ? styles.active : ""
-                }`}
-              >
+              <div style={{ display: activeTab === "actuaciones" ? 'block' : 'none' }}>
                 <ul style={{ listStyleType: "none", padding: 0 }}>
                   {municipio.actuaciones.map((actuacion, idx) => (
-                    <li style={{ fontSize: "1rem" }} key={idx}>
-                      {actuacion}
-                    </li>
+                    <li style={{ fontSize: "1rem" }} key={idx}>{actuacion}</li>
                   ))}
                 </ul>
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </DraggableModal>
   );
 };

@@ -1,0 +1,289 @@
+/* ===========================================
+   Global styles & third-party overrides
+   These cannot be expressed as sx/style objects
+   because they target third-party DOM elements.
+   =========================================== */
+
+/* --- Leaflet map overrides --- */
+.leaflet-control-scale {
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+
+.leaflet-control-container .leaflet-control-scale {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 5px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet-popup-content-wrapper {
+  width: 366px;
+  text-align: center;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 10px;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.leaflet-popup-content {
+  width: 366px !important;
+  margin: 0;
+  padding-right: 0;
+}
+
+.leaflet-interactive {
+  pointer-events: none;
+}
+
+.leaflet-interactive.point-layer {
+  pointer-events: auto;
+}
+
+.leaflet-control-attribution.leaflet-control,
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-control-layers label {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.08333em;
+  width: 100%;
+}
+
+/* --- Leaflet popup image --- */
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.popup-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 1rem;
+}
+
+/* --- Google Maps attribution hide --- */
+a[href^="http://maps.google.com/maps"] { display: none !important; }
+a[href^="https://maps.google.com/maps"] { display: none !important; }
+.gmnoprint a, .gmnoprint span, .gm-style-cc { display: none; }
+.gmnoprint div { background: none !important; }
+
+/* --- Leaflet sidebar (leaflet-sidebar-v2) --- */
+.leaflet-sidebar {
+  position: absolute;
+  top: 0 !important;
+  bottom: 0;
+  width: 420px;
+  max-width: 80%;
+  height: 100%;
+  background: #fff;
+  transition: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaflet-sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+}
+
+.leaflet-sidebar.expanded {
+  transition: none;
+}
+
+.leaflet-sidebar.expanded.hidden {
+  width: 80px;
+  transition: none;
+}
+
+.leaflet-sidebar .leaflet-sidebar-tabs {
+  width: 80px;
+  background: #333;
+  color: #fff;
+  height: 100%;
+  position: absolute;
+  z-index: 2900;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaflet-sidebar .leaflet-sidebar-tabs ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 96%;
+}
+
+.leaflet-sidebar .leaflet-sidebar-tabs li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  height: 100%;
+}
+
+.leaflet-sidebar .leaflet-sidebar-tabs li a.active {
+  background: #444;
+}
+
+.leaflet-sidebar-tabs > li,
+.leaflet-sidebar-tabs > ul > li {
+  height: auto;
+}
+
+/* --- Sidebar content area --- */
+.sidebar-content {
+  margin-left: 80px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.sidebar-content.hidden {
+  display: none !important;
+}
+
+.sidebar-content .sidebar-pane {
+  display: none;
+}
+
+.sidebar-content .sidebar-pane.active {
+  display: block;
+}
+
+.sidebar-content .sidebar-pane ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-content .sidebar-pane ul li {
+  padding: 3px 0;
+}
+
+.sidebar-content .sidebar-pane ul li:last-child {
+  border-bottom: none;
+}
+
+/* --- Sidebar pane component (sidenav_pane) --- */
+.sidebar-pane-component {
+  z-index: 500;
+  overflow-y: auto;
+}
+
+.leaflet-sidebar-component {
+  position: absolute;
+  top: 0 !important;
+  bottom: 0;
+  width: 420px;
+  max-width: 80%;
+  height: 100%;
+  z-index: 500;
+  background: #fff;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* --- Toggle switch (used in tree menus) --- */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-switch .slider {
+  width: 30px;
+  height: 15px;
+  background: #ccc;
+  border-radius: 34px;
+  position: relative;
+  transition: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle-switch .slider:before {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: none;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* --- Scroll container (shared by tree menus) --- */
+.scroll-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

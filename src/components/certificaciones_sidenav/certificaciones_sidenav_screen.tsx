@@ -1,7 +1,7 @@
-// TreeListMenu.jsx
 import React from "react";
-import styles from "./styles.module.css";
+import { Box } from "@mui/material";
 import sectionMainImg from "/assets/sections_menu_main/certificaciones_main.png";
+import { logoContainer, sidebarLogoImage } from "./certificaciones_sidenav_styles";
 
 const CertificacionesSideNav: React.FC<any> = () => {
   return (
@@ -9,17 +9,17 @@ const CertificacionesSideNav: React.FC<any> = () => {
       <h3 style={{ marginBottom: "1rem", textAlign: "center" }}>
         CERTIFICACIONES
       </h3>
-      <div className={styles.logoContainer}>
+      <Box sx={logoContainer}>
         {sectionMainImg && (
           <img
             src={sectionMainImg}
             alt="Logo"
-            className="sidebar-logo-image"
+            style={sidebarLogoImage}
             width={300}
             height={300}
           />
         )}
-      </div>
+      </Box>
     </div>
   );
 };

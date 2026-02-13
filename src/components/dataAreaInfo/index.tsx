@@ -1,7 +1,11 @@
 import React from "react";
-import styles from "./styles.module.css";
+import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  areaInfoComponent, headerStyle, titleStyle, colorCircle,
+  iconStyle, closeIcon, textContent,
+} from "./data_area_info_styles";
 
 interface AreaInfoComponentProps {
   areaLabel: string;
@@ -23,33 +27,30 @@ const AreaInfoComponent: React.FC<AreaInfoComponentProps> = ({
   handleToggleClick,
 }) => {
   const handleClose = () => {
-    onClose(areaName); // Call onClose with areaName
-    removeForestItem(areaName); // Call removeForestItem with toggleName
+    onClose(areaName);
+    removeForestItem(areaName);
     handleToggleClick(areaName);
   };
 
   return (
-    <div className={styles.areaInfoComponent}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{areaLabel}</h2>
+    <Box sx={areaInfoComponent}>
+      <Box sx={headerStyle}>
+        <Box component="h2" sx={titleStyle}>{areaLabel}</Box>
         <div>
-          <div
-            className={styles.colorCircle}
-            style={{ backgroundColor: areaColor }}
-          ></div>
-          <div className={styles.icon}>
+          <Box sx={colorCircle} style={{ backgroundColor: areaColor }} />
+          <Box sx={iconStyle}>
             <FontAwesomeIcon
               icon={faTimes}
-              className={styles.closeIcon}
+              style={{ fontSize: '1.9em', cursor: 'pointer', color: '#aaa', position: 'absolute', top: 0, right: 0 }}
               onClick={handleClose}
             />
-          </div>
+          </Box>
         </div>
-      </div>
-      <div className={styles.textContent}>
+      </Box>
+      <Box sx={textContent}>
         <p>{areaText}</p>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

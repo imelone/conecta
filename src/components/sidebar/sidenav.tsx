@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sidenav.css";
+import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faCog, faMap } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
@@ -9,6 +9,10 @@ import { useNavigate } from "react-router-dom";
 import "leaflet-sidebar-v2/css/leaflet-sidebar.min.css";
 import "leaflet-sidebar-v2";
 import LogoutButton from "../LogoutButton";
+import {
+  sidebarLogo, sidebarLogoImage, sectionTitle,
+  settingsSection, settingsActions, sidebarLogoutButton, programItem,
+} from "./sidenav_styles";
 
 const CustomIcon = styled(FontAwesomeIcon)`
   font-size: 1.5rem;
@@ -92,15 +96,15 @@ const Sidebar: React.FC = () => {
     >
       <div className="leaflet-sidebar-tabs">
         <ul role="tablist">
-          <div className="sidebar-logo">
+          <Box sx={sidebarLogo}>
             <img
               src={Logo}
               alt="Logo"
-              className="sidebar-logo-image"
+              style={sidebarLogoImage}
               width={100}
               height={100}
             />
-          </div>
+          </Box>
           <li>
             <a
               role="tab"
@@ -139,7 +143,7 @@ const Sidebar: React.FC = () => {
           className={`sidebar-pane ${activePane === "home" ? "active" : ""}`}
           id="home"
         >
-          <h2 className="section-title">Home</h2>
+          <Box component="h2" sx={sectionTitle}>Home</Box>
           <p>Home content goes here.</p>
         </div>
 
@@ -157,21 +161,21 @@ const Sidebar: React.FC = () => {
             <ul>
               {programs.map((program, index) => (
                 <li key={index}>
-                  <div
-                    className="program-item"
+                  <Box
+                    sx={programItem}
                     onClick={() => handleProgramClick(program.comunidadArchivo)}
                   >
                     <h3 style={{ margin: "0", textAlign: "center" }}>
                       {program.programa}
                     </h3>
-                  </div>
+                  </Box>
                 </li>
               ))}
             </ul>
             <img
               src={subMenuMainImg}
               alt="description"
-              className="sidebar-logo-image"
+              style={sidebarLogoImage}
               width={300}
               height={300}
             />
@@ -185,13 +189,13 @@ const Sidebar: React.FC = () => {
           }`}
           id="settings"
         >
-          <h1 className="sidebar-header">Configuración</h1>
-          <div className="settings-section">
+          <Box component="h1" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '5rem' }}>Configuración</Box>
+          <Box sx={settingsSection}>
             <p>Contenido de configuración</p>
-            <div className="settings-actions">
-              <LogoutButton className="sidebar-logout-button" />
-            </div>
-          </div>
+            <Box sx={settingsActions}>
+              <LogoutButton sx={sidebarLogoutButton} />
+            </Box>
+          </Box>
         </div>
       </div>
     </div>
