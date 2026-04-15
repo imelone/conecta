@@ -114,13 +114,13 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
       <Box sx={dataAnalysisMenu}>
         <Box sx={tabHeader}>
           <Box component="button" sx={activeTab === "datos_catastrales" ? tabLinkActive : tabLink} onClick={() => handleTabClick("datos_catastrales")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>DATOS CATASTRALES</p>
+            <p style={{ fontWeight: "700" }}>DATOS CATASTRALES</p>
           </Box>
           <Box component="button" sx={activeTab === "indicadores" ? tabLinkActive : tabLink} onClick={() => handleTabClick("indicadores")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>INDICADORES</p>
+            <p style={{ fontWeight: "700" }}>INDICADORES</p>
           </Box>
           <Box component="button" sx={activeTab === "informacion" ? tabLinkActive : tabLink} onClick={() => handleTabClick("informacion")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>INFORMACIÓN</p>
+            <p style={{ fontWeight: "700" }}>INFORMACIÓN</p>
           </Box>
         </Box>
 

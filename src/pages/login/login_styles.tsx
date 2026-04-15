@@ -6,12 +6,13 @@ export const loginContainer: SxProps = {
   alignItems: 'center',
   minHeight: '100vh',
   backgroundColor: '#f5f5f5',
+  padding: { xs: '1rem', sm: '1.5rem', md: 0 },
 }
 
 export const loginCard: SxProps = {
   width: '100%',
   maxWidth: '450px',
-  padding: '2rem',
+  padding: { xs: '1.25rem', sm: '1.5rem', md: '2rem' },
   backgroundColor: 'white',
   borderRadius: '8px',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -24,8 +25,9 @@ export const logoContainer: SxProps = {
 }
 
 export const loginLogo: React.CSSProperties = {
-  width: '250px',
-  height: '250px',
+  width: '100%',
+  maxWidth: '250px',
+  height: 'auto',
   objectFit: 'contain',
 }
 

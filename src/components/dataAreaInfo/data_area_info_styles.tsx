@@ -1,7 +1,7 @@
 import { SxProps } from '@mui/material'
 
 export const areaInfoComponent: SxProps = {
-  padding: '20px',
+  padding: { xs: '12px', md: '20px' },
   border: '1px solid #ddd',
   backgroundColor: '#fff',
   position: 'relative',
@@ -25,9 +25,10 @@ export const titleStyle: SxProps = {
 
 export const textContent: SxProps = {
   marginTop: '10px',
-  fontSize: '14px',
+  fontSize: { xs: '13px', md: '14px' },
   lineHeight: 1.5,
   color: '#333',
+  wordBreak: 'break-word',
 }
 
 export const closeIcon: SxProps = {

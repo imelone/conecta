@@ -41,8 +41,6 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
               src={`/assets/images/sections_menu_main/${sectionMainImg}.png`}
               alt="Logo"
               style={sidebarLogoImage}
-              width={300}
-              height={300}
             />
           )}
         </Box>
@@ -133,8 +131,6 @@ const SostenibilidadSidenav: React.FC<TownListProps> = ({
           src={secondaryImage}
           alt="Logo2"
           style={sidebarLogoImage}
-          width={150}
-          height={150}
         />
       )}
     </Box>

@@ -48,7 +48,7 @@ const DataAnalysisAulaVerde: React.FC<DataAnalysisMenuProps> = ({
             sx={activeTab === "sostenibilidad_turismo" ? tabLinkActive : tabLink}
             onClick={() => handleTabClick("sostenibilidad_turismo")}
           >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>
+            <p style={{ fontWeight: "700" }}>
               SOSTENIBILIDAD EN EL TURISMO
             </p>
           </Box>
@@ -57,7 +57,7 @@ const DataAnalysisAulaVerde: React.FC<DataAnalysisMenuProps> = ({
             sx={activeTab === "certificacion_espacios_verdes" ? tabLinkActive : tabLink}
             onClick={() => handleTabClick("certificacion_espacios_verdes")}
           >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>
+            <p style={{ fontWeight: "700" }}>
               CERTIFICACIÓN ESPACIOS VERDES
             </p>
           </Box>
@@ -66,7 +66,7 @@ const DataAnalysisAulaVerde: React.FC<DataAnalysisMenuProps> = ({
             sx={activeTab === "certificacion_hotel_ecologico" ? tabLinkActive : tabLink}
             onClick={() => handleTabClick("certificacion_hotel_ecologico")}
           >
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>
+            <p style={{ fontWeight: "700" }}>
               CERTIFICACIÓN HOTEL ECOLÓGICO
             </p>
           </Box>

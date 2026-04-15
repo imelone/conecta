@@ -4,7 +4,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useDataAnalysisNuevosBosquesViewModel } from "./data_analisis_nuevos_bosques_view_model";
 import DraggableModal from "../draggable_modal/draggable_modal";
 import {
-  tabHeader, tabLink, tabLinkActive,
+  dataAnalysisMenu, tabHeader, tabLink, tabLinkActive,
   tabContent, gridContainer,
 } from "../shared/data_analysis_styles";
 
@@ -100,12 +100,13 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
 
   return (
     <DraggableModal isMinimized={isMinimized} setIsMinimized={setIsMinimized}>
+      <Box sx={dataAnalysisMenu}>
       <Box sx={tabHeader}>
         <Box component="button" sx={activeTab === "indicadores" ? tabLinkActive : tabLink} onClick={() => handleTabClick("indicadores")}>
-          <p style={{ fontWeight: "700", fontSize: "14px" }}>INDICADORES</p>
+          <p style={{ fontWeight: "700" }}>INDICADORES</p>
         </Box>
         <Box component="button" sx={activeTab === "datos_catastrales" ? tabLinkActive : tabLink} onClick={() => handleTabClick("datos_catastrales")}>
-          <p style={{ fontWeight: "700", fontSize: "14px" }}>DATOS CATASTRALES</p>
+          <p style={{ fontWeight: "700" }}>DATOS CATASTRALES</p>
         </Box>
       </Box>
       <Box sx={tabContent}>
@@ -166,6 +167,7 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
             </Box>
           )}
         </div>
+      </Box>
       </Box>
     </DraggableModal>
   );

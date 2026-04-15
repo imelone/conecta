@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presupuesto de Horas — Proyecto Conecta Futuro</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a1a1a; background: #f5f5f5; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 30px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+  h1 { font-size: 28px; color: #1a1a1a; border-bottom: 3px solid #2e7d32; padding-bottom: 12px; margin-bottom: 20px; }
+  h2 { font-size: 22px; color: #1a1a1a; margin-top: 40px; margin-bottom: 16px; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; }
+  h2.anexo { color: #0066cc; border-bottom-color: #0066cc; }
+  h3 { font-size: 17px; color: #333; margin-top: 28px; margin-bottom: 10px; }
+  h3.anexo { color: #0066cc; }
+  h3.sprint-anexo { color: #0066cc; background: #e8f0fe; padding: 8px 12px; border-radius: 6px; }
+  p, li { font-size: 14px; }
+  ul { margin: 8px 0 16px 24px; }
+  li { margin-bottom: 4px; }
+  .legend { background: #f9f9f9; border-left: 4px solid #2e7d32; padding: 12px 16px; margin-bottom: 24px; font-size: 14px; }
+  .legend .blue { color: #0066cc; font-weight: 600; }
+  .desc { font-size: 14px; color: #555; margin-bottom: 12px; font-style: italic; }
+  .desc.anexo { color: #0066cc; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13.5px; }
+  th { background: #f0f0f0; text-align: left; padding: 8px 10px; border: 1px solid #ddd; font-weight: 600; }
+  td { padding: 7px 10px; border: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) { background: #fafafa; }
+  tr.subtotal td { font-weight: 700; background: #f0f0f0; }
+  tr.subtotal-anexo td { font-weight: 700; background: #e8f0fe; color: #0066cc; }
+  /* ANEXO rows */
+  table.anexo td, table.anexo th { color: #0066cc; }
+  table.anexo th { background: #e8f0fe; }
+  table.anexo tr:nth-child(even) { background: #f0f5ff; }
+  table.anexo tr.subtotal td { background: #d0e2ff; }
+  /* Category header rows in tables */
+  tr.cat td { font-weight: 700; background: #f5f5f5; border-bottom: 2px solid #ccc; }
+  tr.cat-anexo td { font-weight: 700; background: #e8f0fe; color: #0066cc; border-bottom: 2px solid #80b3ff; }
+  /* Summary */
+  .total-box { background: #2e7d32; color: #fff; padding: 16px 20px; border-radius: 8px; margin: 24px 0; font-size: 20px; text-align: center; }
+  .total-box span { font-size: 32px; font-weight: 700; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 30px 0; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+  .risk { background: #fff8e1; border-left: 4px solid #f9a825; padding: 10px 14px; margin-bottom: 8px; font-size: 13.5px; }
+  .excluded { background: #fce4ec; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 4px; }
+  .footer { text-align: center; color: #999; font-size: 12px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #eee; }
+  @media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 20px; }
+    .total-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table.anexo td, table.anexo th, h2.anexo, h3.anexo, h3.sprint-anexo, .desc.anexo, tr.subtotal-anexo td, tr.cat-anexo td { color: #0066cc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Presupuesto de Horas — Proyecto Conecta Futuro</h1>
+
+<div class="legend">
+  <strong>Leyenda de colores:</strong><br>
+  ● Texto normal = Desarrollo base (backend, integración de datos existentes)<br>
+  <span class="blue">● Texto azul = Features del ANEXO I — Aclaraciones de Alcance</span>
+</div>
+
+<!-- ============================================ -->
+<h2>Resumen del Estado Actual (Frontend)</h2>
+<ul>
+  <li><strong>Login:</strong> Autenticación contra un array hardcodeado en <code>src/data/users.ts</code> con sesión en <code>sessionStorage</code></li>
+  <li><strong>5 programas</strong> con datos mockeados en JSON: Cuida tu Bosque, Nuevos Bosques, Sostenibilidad, Certificaciones, Aula Verde</li>
+  <li><strong>Mapa interactivo</strong> (Leaflet) con capas GeoJSON, marcadores, popups</li>
+  <li><strong>Filtrado por municipio</strong> basado en el usuario logueado</li>
+  <li><strong>Datos mockeados:</strong> parcelas con coordenadas, indicadores, datos catastrales, leyendas, documentos PDF, imágenes</li>
+  <li><strong>Sin backend:</strong> todo es estático, no hay API, no hay base de datos</li>
+</ul>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>1. BACKEND — Desarrollo Base</h2>
+
+<h3>1.1 Infraestructura y Setup Inicial</h3>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Definición de arquitectura backend (Node.js/Express o .NET)</td><td>8</td></tr>
+  <tr><td>Setup del proyecto, estructura de carpetas, configuración</td><td>8</td></tr>
+  <tr><td>Configuración de base de datos (PostgreSQL/SQL Server)</td><td>6</td></tr>
+  <tr><td>Configuración de entorno (dev, staging, prod)</td><td>6</td></tr>
+  <tr><td>Docker / despliegue básico</td><td>8</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>36</td></tr>
+</table>
+
+<h3>1.2 Autenticación y Autorización (Email + Código OTP)</h3>
+<p class="desc">Login seguro y simple: el usuario ingresa su email, recibe un código temporal (OTP) y accede sin contraseña.</p>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Tabla <code>usuarios</code> (email, municipio, rol, activo, ultimo_acceso)</td><td>4</td></tr>
+  <tr><td>Tabla <code>roles</code> y <code>permisos</code></td><td>4</td></tr>
+  <tr><td>Tabla <code>codigos_otp</code> (id, usuario_id, codigo, expiracion, usado)</td><td>3</td></tr>
+  <tr><td>Servicio de envío de email (SendGrid / AWS SES / Resend)</td><td>8</td></tr>
+  <tr><td>Template de email con código OTP</td><td>4</td></tr>
+  <tr><td>API <code>/auth/request-code</code> — genera OTP y envía email</td><td>8</td></tr>
+  <tr><td>API <code>/auth/verify-code</code> — valida OTP y retorna JWT</td><td>8</td></tr>
+  <tr><td>Middleware de autenticación y autorización (JWT)</td><td>8</td></tr>
+  <tr><td>API registro/gestión de usuarios (CRUD admin)</td><td>10</td></tr>
+  <tr><td>Expiración de OTP (5 min) + rate limiting (anti-brute force)</td><td>4</td></tr>
+  <tr><td>Manejo de sesiones y expiración de tokens</td><td>6</td></tr>
+  <tr><td>Tests unitarios autenticación</td><td>8</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>75</td></tr>
+</table>
+
+<h3>1.3 Modelo de Datos y Tablas</h3>
+<p class="desc">Basado en los JSON mock actuales:</p>
+<table>
+  <tr><th>Tabla / Entidad</th><th>Campos principales</th><th style="width:70px">Horas</th></tr>
+  <tr><td><code>comunidades</code></td><td>id, nombre</td><td>3</td></tr>
+  <tr><td><code>provincias</code></td><td>id, nombre, comunidad_id</td><td>3</td></tr>
+  <tr><td><code>municipios</code></td><td>id, nombre, provincia_id</td><td>3</td></tr>
+  <tr><td><code>programas</code></td><td>id, nombre, descripcion, imagen, archivo</td><td>4</td></tr>
+  <tr><td><code>parcelas</code></td><td>id, municipio_id, programa_id, geometry (GeoJSON), type</td><td>6</td></tr>
+  <tr><td><code>leyendas</code></td><td>id, parcela_id, name, label, color, texto</td><td>4</td></tr>
+  <tr><td><code>datos_catastrales</code></td><td>id, parcela_id, imagen, ref_cat, poligono, parcela, coord_x, coord_y</td><td>5</td></tr>
+  <tr><td><code>indicadores</code></td><td>id, parcela_id, superficie, arboles, co2_capturado, co2_por_capturar, factor_hidrologico</td><td>5</td></tr>
+  <tr><td><code>indicadores_nuevos_bosques</code></td><td>id, parcela_id, superficie, arboles_nuevos, co2_por_capturar</td><td>4</td></tr>
+  <tr><td><code>metas_sostenibilidad</code></td><td>id, parcela_id, meta</td><td>4</td></tr>
+  <tr><td><code>pilares_sostenibilidad</code></td><td>id, parcela_id, pilar</td><td>4</td></tr>
+  <tr><td><code>actuaciones_sostenibilidad</code></td><td>id, parcela_id, actuacion</td><td>4</td></tr>
+  <tr><td><code>certificaciones</code></td><td>id, titulo, programa_id</td><td>4</td></tr>
+  <tr><td><code>certificacion_items</code></td><td>id, certificacion_id, descripcion</td><td>3</td></tr>
+  <tr><td><code>documentos</code></td><td>id, parcela_id, nombre, icono, url, tipo</td><td>5</td></tr>
+  <tr><td><code>informacion_parcela</code></td><td>id, parcela_id, descripcion, estado_conservacion</td><td>5</td></tr>
+  <tr><td><code>datos_adicionales</code></td><td>id, informacion_id, texto</td><td>3</td></tr>
+  <tr><td><code>emisiones_directas</code></td><td>id, informacion_id, periodo, edificio_sede, nombre_gas, formula, pca, tipo_equipo, capacidad, recarga, emisiones_kg_co2e, total</td><td>6</td></tr>
+  <tr><td><code>aula_verde_documentos</code></td><td>id, categoria, label, pdf_url</td><td>4</td></tr>
+  <tr><td>Índices, constraints, FK</td><td>—</td><td>8</td></tr>
+  <tr><td>Stored Procedures (CRUD para cada entidad)</td><td>—</td><td>24</td></tr>
+  <tr><td>Seed data / migración de JSON a DB</td><td>—</td><td>12</td></tr>
+  <tr class="subtotal"><td colspan="2">Subtotal</td><td>120</td></tr>
+</table>
+
+<h3>1.4 APIs REST (Endpoints)</h3>
+<table>
+  <tr><th>Endpoint / Módulo</th><th>Métodos</th><th style="width:70px">Horas</th></tr>
+  <tr><td><code>/api/auth/login</code></td><td>POST</td><td>(en 1.2)</td></tr>
+  <tr><td><code>/api/auth/refresh</code></td><td>POST</td><td>(en 1.2)</td></tr>
+  <tr><td><code>/api/users</code></td><td>GET, POST, PUT, DELETE</td><td>(en 1.2)</td></tr>
+  <tr><td><code>/api/programas</code></td><td>GET, GET/:id</td><td>6</td></tr>
+  <tr><td><code>/api/programas/:id/distritos</code></td><td>GET (árbol comunidad→provincia→municipio→parcelas)</td><td>12</td></tr>
+  <tr><td><code>/api/parcelas/:id</code></td><td>GET (detalle completo)</td><td>8</td></tr>
+  <tr><td><code>/api/parcelas/:id/indicadores</code></td><td>GET, PUT</td><td>6</td></tr>
+  <tr><td><code>/api/parcelas/:id/catastrales</code></td><td>GET, PUT</td><td>6</td></tr>
+  <tr><td><code>/api/parcelas/:id/leyenda</code></td><td>GET, PUT</td><td>4</td></tr>
+  <tr><td><code>/api/parcelas/:id/informacion</code></td><td>GET, PUT</td><td>6</td></tr>
+  <tr><td><code>/api/parcelas/:id/documentos</code></td><td>GET, POST, DELETE</td><td>8</td></tr>
+  <tr><td><code>/api/parcelas/:id/emisiones</code></td><td>GET, POST, PUT</td><td>8</td></tr>
+  <tr><td><code>/api/sostenibilidad/:municipio</code></td><td>GET (metas, pilares, actuaciones)</td><td>8</td></tr>
+  <tr><td><code>/api/certificaciones</code></td><td>GET (con items)</td><td>6</td></tr>
+  <tr><td><code>/api/aula-verde</code></td><td>GET (documentos por categoría)</td><td>6</td></tr>
+  <tr><td><code>/api/municipios</code></td><td>GET (filtrado por usuario)</td><td>4</td></tr>
+  <tr><td><code>/api/upload</code> (imágenes/PDFs)</td><td>POST</td><td>10</td></tr>
+  <tr><td>Validación de inputs (middleware)</td><td>—</td><td>8</td></tr>
+  <tr><td>Manejo de errores global</td><td>—</td><td>6</td></tr>
+  <tr><td>Paginación y filtros</td><td>—</td><td>8</td></tr>
+  <tr><td>Tests unitarios de APIs</td><td>—</td><td>20</td></tr>
+  <tr><td>Tests de integración</td><td>—</td><td>16</td></tr>
+  <tr><td>Documentación API (Swagger/OpenAPI)</td><td>—</td><td>10</td></tr>
+  <tr class="subtotal"><td colspan="2">Subtotal</td><td>166</td></tr>
+</table>
+
+<h3>1.5 Almacenamiento de Archivos</h3>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Servicio de subida de imágenes (parcelas, secciones)</td><td>8</td></tr>
+  <tr><td>Servicio de subida de PDFs (documentos, informes)</td><td>6</td></tr>
+  <tr><td>Almacenamiento (S3 / Azure Blob / local)</td><td>8</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>22</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>2. INTEGRACIÓN FRONTEND ↔ BACKEND</h2>
+
+<h3>2.1 Refactor de Autenticación (Email + OTP)</h3>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Pantalla de login: input email + botón "Enviar código"</td><td>6</td></tr>
+  <tr><td>Pantalla de verificación: input código OTP + temporizador de reenvío</td><td>6</td></tr>
+  <tr><td>Integración con API <code>/auth/request-code</code> y <code>/auth/verify-code</code></td><td>6</td></tr>
+  <tr><td>JWT storage (httpOnly cookies o localStorage seguro)</td><td>4</td></tr>
+  <tr><td>Proteger rutas con token validation</td><td>4</td></tr>
+  <tr><td>Manejar expiración de sesión en UI</td><td>4</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>30</td></tr>
+</table>
+
+<h3>2.2 Refactor de Datos de Programas</h3>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Crear servicio/capa API centralizada (axios/fetch wrapper)</td><td>8</td></tr>
+  <tr><td>Interceptors para auth headers y manejo de errores</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock cuida-tu-bosque por API</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock nuevos-bosques por API</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock sostenibilidad por API</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock certificaciones por API</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock aula-verde por API</td><td>6</td></tr>
+  <tr><td>Reemplazar JSON mock listado programas por API</td><td>4</td></tr>
+  <tr><td>Refactor <code>useProgramMap</code> hook para consumir API</td><td>10</td></tr>
+  <tr><td>Refactor <code>useMunicipioFilter</code> para usar datos del token/API</td><td>4</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>62</td></tr>
+</table>
+
+<h3>2.3 Estados de Carga y Error</h3>
+<table>
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Loading states (skeletons/spinners) en cada sección</td><td>8</td></tr>
+  <tr><td>Error boundaries y mensajes de error</td><td>6</td></tr>
+  <tr><td>Retry logic para llamadas fallidas</td><td>4</td></tr>
+  <tr><td>Empty states (sin datos)</td><td>4</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>22</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================================ -->
+<h2 class="anexo">3. FEATURES DEL ANEXO I — Aclaraciones de Alcance</h2>
+<p class="desc anexo">Ref: ANEXO I. ACLARACIONES DE ALCANCE Y CRITERIOS DE DESARROLLO</p>
+
+<h3 class="anexo">3.1 KPIs Ambientales y Modelos de Carbono (Anexo §3)</h3>
+<p class="desc anexo">Indicadores ambientales y modelos de carbono con finalidad informativa y analítica. Conjunto predefinido, sin configuración dinámica por usuarios. Sin carácter normativo ni certificador.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Diseño del catálogo de KPIs predefinidos (CO2, agua, biodiversidad, etc.)</td><td>8</td></tr>
+  <tr><td>Tabla <code>kpis_ambientales</code> (id, parcela_id, tipo_kpi, valor, unidad, fecha_calculo)</td><td>5</td></tr>
+  <tr><td>Tabla <code>modelos_carbono</code> (id, parcela_id, metodologia, co2_almacenado, co2_captura_anual, fecha)</td><td>5</td></tr>
+  <tr><td>Backend: Servicio de cálculo de KPIs basado en datos de parcelas e indicadores</td><td>16</td></tr>
+  <tr><td>Backend: API <code>/api/kpis/:parcelaId</code> — GET KPIs calculados</td><td>6</td></tr>
+  <tr><td>Backend: API <code>/api/modelos-carbono/:parcelaId</code> — GET modelo de carbono</td><td>6</td></tr>
+  <tr><td>Frontend: Dashboard de KPIs por parcela/municipio (gráficos, tarjetas)</td><td>20</td></tr>
+  <tr><td>Frontend: Visualización del modelo de carbono (gráfico de barras/líneas)</td><td>12</td></tr>
+  <tr><td>Tests</td><td>8</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>86</td></tr>
+</table>
+
+<h3 class="anexo">3.2 Prevención Climática — Integración AEMET OpenData API (Anexo §3 / §11)</h3>
+<p class="desc anexo">Integración básica con AEMET OpenData API (APIs públicas). Datos exclusivamente de AEMET. Sin datos históricos. Sin garantía de disponibilidad de servicios de terceros.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Investigación y documentación de AEMET OpenData API (endpoints, autenticación, límites)</td><td>8</td></tr>
+  <tr><td>Backend: Servicio de conexión a AEMET (API key, retry, rate limiting)</td><td>10</td></tr>
+  <tr><td>Backend: Endpoint datos meteorológicos actuales (temp, viento, humedad) por municipio</td><td>8</td></tr>
+  <tr><td>Backend: Endpoint predicciones/pronósticos por municipio, provincia y territorio</td><td>10</td></tr>
+  <tr><td>Backend: Endpoint avisos y alertas meteorológicas</td><td>8</td></tr>
+  <tr><td>Backend: Capa de caché para reducir llamadas a AEMET (Redis/memoria)</td><td>8</td></tr>
+  <tr><td>Backend: Mapeo municipios del proyecto ↔ códigos AEMET</td><td>6</td></tr>
+  <tr><td>Backend: Manejo de errores/indisponibilidad de AEMET (fallback graceful)</td><td>4</td></tr>
+  <tr><td>Frontend: Widget/panel meteorológico en mapa (datos actuales por municipio)</td><td>16</td></tr>
+  <tr><td>Frontend: Vista de predicciones (próximos días)</td><td>12</td></tr>
+  <tr><td>Frontend: Panel de alertas y avisos meteorológicos (con iconos de severidad)</td><td>12</td></tr>
+  <tr><td>Tests unitarios + integración</td><td>10</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>112</td></tr>
+</table>
+
+<h3 class="anexo">3.3 Monitoreo Ambiental — Sensores IoT (Anexo §4)</h3>
+<p class="desc anexo">Integración, procesamiento y visualización de datos de sensores IoT. <strong>Excluye:</strong> provisión de sensores físicos, instalación, mantenimiento, reposición o gestión de hardware. Dos modalidades: <strong>formularios estándar</strong> para carga manual del usuario e <strong>integración de APIs</strong> de sensores.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr class="cat-anexo"><td colspan="2">Modelo de datos sensores</td></tr>
+  <tr><td>Tabla <code>tipos_sensor</code> (id, nombre, unidad_medida, rango_min, rango_max, descripcion)</td><td>4</td></tr>
+  <tr><td>Tabla <code>sensores</code> (id, parcela_id, tipo_sensor_id, nombre, ubicacion, activo, fuente: 'manual'/'api')</td><td>5</td></tr>
+  <tr><td>Tabla <code>lecturas_sensor</code> (id, sensor_id, valor, timestamp, validado)</td><td>5</td></tr>
+  <tr><td>Tabla <code>configuracion_api_sensor</code> (id, sensor_id, url_endpoint, api_key, frecuencia, ultimo_fetch)</td><td>4</td></tr>
+  <tr><td>Índices y particionamiento por fecha para lecturas masivas</td><td>6</td></tr>
+  <tr class="cat-anexo"><td colspan="2">Backend — Formularios (carga manual)</td></tr>
+  <tr><td>API CRUD sensores <code>/api/sensores</code></td><td>8</td></tr>
+  <tr><td>API carga de lecturas manual <code>/api/sensores/:id/lecturas</code> (POST individual y bulk)</td><td>8</td></tr>
+  <tr><td>Validación de datos de entrada (rangos, formato, duplicados)</td><td>6</td></tr>
+  <tr><td>API consulta de lecturas <code>/api/sensores/:id/lecturas</code> (GET con filtros por fecha)</td><td>6</td></tr>
+  <tr class="cat-anexo"><td colspan="2">Backend — Integración APIs externas de sensores</td></tr>
+  <tr><td>Servicio de polling/webhook para APIs de sensores externos</td><td>12</td></tr>
+  <tr><td>Configuración por sensor de la URL, credenciales y frecuencia</td><td>6</td></tr>
+  <tr><td>Mapeo y normalización de datos de diferentes proveedores</td><td>10</td></tr>
+  <tr><td>Job programado (cron) para fetch periódico de datos</td><td>8</td></tr>
+  <tr><td>Manejo de errores y reintentos por sensor</td><td>4</td></tr>
+  <tr class="cat-anexo"><td colspan="2">Frontend</td></tr>
+  <tr><td>Página de gestión de sensores (listado, alta, baja, edición)</td><td>14</td></tr>
+  <tr><td>Formulario estándar de carga manual de lecturas (individual y CSV/bulk)</td><td>12</td></tr>
+  <tr><td>Formulario de configuración de API externa por sensor</td><td>8</td></tr>
+  <tr><td>Dashboard de visualización de datos IoT (gráficos temporal, último valor, estado)</td><td>20</td></tr>
+  <tr><td>Integración de datos de sensores en el mapa (marcadores con último valor)</td><td>10</td></tr>
+  <tr><td>Tests</td><td>12</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>168</td></tr>
+</table>
+
+<h3 class="anexo">3.4 IA Descriptiva y Predictiva de Complejidad Media (Anexo §2)</h3>
+<p class="desc anexo">Modelos descriptivos y predictivos de complejidad media para análisis y apoyo a la toma de decisiones. <strong>Excluye:</strong> sistemas autónomos, aprendizaje continuo en producción, sustitución de supervisión humana, predicción avanzada, agentes inteligentes. Resultados con carácter indicativo, sujetos a validación humana.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr class="cat-anexo"><td colspan="2">Análisis Descriptivo</td></tr>
+  <tr><td>Backend: Servicio de agregaciones (totales CO2, superficie, árboles por programa/municipio)</td><td>12</td></tr>
+  <tr><td>Backend: Cálculo de tendencias temporales (variación interanual de indicadores)</td><td>10</td></tr>
+  <tr><td>Backend: Rankings y comparativas entre municipios/parcelas</td><td>8</td></tr>
+  <tr><td>Backend: API <code>/api/analytics/descriptivo</code> (resumen, tendencias, rankings)</td><td>8</td></tr>
+  <tr class="cat-anexo"><td colspan="2">Modelos Predictivos (complejidad media)</td></tr>
+  <tr><td>Investigación de librerías (simple-statistics, regression.js o similar)</td><td>6</td></tr>
+  <tr><td>Backend: Modelo predictivo de captura de CO2 futuro (regresión lineal/polinomial)</td><td>12</td></tr>
+  <tr><td>Backend: Modelo predictivo de crecimiento de cobertura arbórea</td><td>10</td></tr>
+  <tr><td>Backend: API <code>/api/analytics/predictivo/:parcelaId</code> (proyecciones)</td><td>6</td></tr>
+  <tr><td>Backend: Disclaimer automático "resultado indicativo, sujeto a validación"</td><td>2</td></tr>
+  <tr class="cat-anexo"><td colspan="2">Frontend</td></tr>
+  <tr><td>Dashboard de analítica descriptiva (gráficos de resumen, tendencias)</td><td>16</td></tr>
+  <tr><td>Vista de proyecciones predictivas con intervalos de confianza</td><td>12</td></tr>
+  <tr><td>Badges/indicadores de "resultado indicativo" en toda predicción</td><td>4</td></tr>
+  <tr><td>Tests</td><td>10</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>116</td></tr>
+</table>
+
+<h3 class="anexo">3.5 Gobernanza Digital y Ciencia Ciudadana (Anexo §5)</h3>
+<p class="desc anexo">Mecanismos controlados de aportación, visualización y consulta de información. <strong>Excluye:</strong> gestión de comunidades masivas, moderación intensiva, validación científica formal, formularios participativos complejos, trazabilidad individual, descarga masiva, plataforma social.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Tabla <code>aportaciones_ciudadanas</code> (id, usuario_id, parcela_id, tipo, contenido, fecha, estado)</td><td>4</td></tr>
+  <tr><td>Backend: API CRUD aportaciones (envío, listado, consulta)</td><td>8</td></tr>
+  <tr><td>Backend: Moderación básica (aprobación/rechazo por admin)</td><td>6</td></tr>
+  <tr><td>Backend: Consulta pública de aportaciones aprobadas</td><td>4</td></tr>
+  <tr><td>Frontend: Formulario simple de aportación ciudadana (texto + imagen opcional)</td><td>10</td></tr>
+  <tr><td>Frontend: Vista de aportaciones públicas por zona/parcela</td><td>8</td></tr>
+  <tr><td>Frontend: Panel admin de moderación (aprobar/rechazar)</td><td>8</td></tr>
+  <tr><td>Tests</td><td>6</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>54</td></tr>
+</table>
+
+<h3 class="anexo">3.6 QA, DevOps y Calidad (Anexo §8)</h3>
+<p class="desc anexo">Aseguramiento de calidad y DevOps para desarrollo inicial. Orientado a estabilidad y puesta en producción. <strong>Excluye:</strong> operación permanente post-proyecto, soporte continuado.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Pipeline CI/CD (GitHub Actions / GitLab CI)</td><td>12</td></tr>
+  <tr><td>Entorno de staging automático</td><td>8</td></tr>
+  <tr><td>Deploy automatizado a producción</td><td>8</td></tr>
+  <tr><td>Monitoreo básico (health checks, logs centralizados)</td><td>8</td></tr>
+  <tr><td>Testing automatizado E2E (Playwright/Cypress — flujos críticos)</td><td>20</td></tr>
+  <tr><td>Documentación de despliegue y operación</td><td>8</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>64</td></tr>
+</table>
+
+<h3 class="anexo">3.7 Replicabilidad y Escalabilidad (Anexo §6)</h3>
+<p class="desc anexo">Diseño modular, reutilizable y documentado. <strong>Excluye:</strong> despliegue automático en nuevos territorios, implementación operativa fuera del ámbito aprobado.</p>
+<table class="anexo">
+  <tr><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>Refactor a arquitectura multi-tenant (datos por territorio/proyecto)</td><td>16</td></tr>
+  <tr><td>Configuración externalizada (env vars, feature flags por territorio)</td><td>8</td></tr>
+  <tr><td>Documentación técnica de replicación (guía paso a paso)</td><td>10</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>34</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>4. RESUMEN GENERAL DE HORAS</h2>
+
+<h3>Desarrollo Base</h3>
+<table>
+  <tr><th>Bloque</th><th style="width:70px">Horas</th></tr>
+  <tr><td>1.1 Infraestructura y Setup</td><td>36</td></tr>
+  <tr><td>1.2 Autenticación Backend (Email + OTP)</td><td>75</td></tr>
+  <tr><td>1.3 Modelo de Datos y Tablas</td><td>120</td></tr>
+  <tr><td>1.4 APIs REST</td><td>166</td></tr>
+  <tr><td>1.5 Almacenamiento de Archivos</td><td>22</td></tr>
+  <tr><td>2.1 Integración Auth Frontend (Email + OTP)</td><td>30</td></tr>
+  <tr><td>2.2 Integración Datos Frontend</td><td>62</td></tr>
+  <tr><td>2.3 Estados de Carga/Error</td><td>22</td></tr>
+  <tr class="subtotal"><td>Subtotal Base</td><td>533</td></tr>
+</table>
+
+<h3 class="anexo">Features del ANEXO I</h3>
+<table class="anexo">
+  <tr><th>Bloque</th><th style="width:70px">Horas</th></tr>
+  <tr><td>3.1 KPIs Ambientales y Modelos de Carbono</td><td>86</td></tr>
+  <tr><td>3.2 Prevención Climática — AEMET API</td><td>112</td></tr>
+  <tr><td>3.3 Monitoreo Ambiental — Sensores IoT</td><td>168</td></tr>
+  <tr><td>3.4 IA Descriptiva y Predictiva</td><td>116</td></tr>
+  <tr><td>3.5 Gobernanza Digital y Ciencia Ciudadana</td><td>54</td></tr>
+  <tr><td>3.6 QA, DevOps y Calidad</td><td>64</td></tr>
+  <tr><td>3.7 Replicabilidad y Escalabilidad</td><td>34</td></tr>
+  <tr class="subtotal"><td>Subtotal ANEXO</td><td>634</td></tr>
+</table>
+
+<h3>Margen para Imprevistos y QA General</h3>
+<table>
+  <tr><th>Concepto</th><th style="width:70px">Horas</th></tr>
+  <tr><td>QA / Testing manual general</td><td>48</td></tr>
+  <tr><td>Bugfixes y ajustes post-integración</td><td>40</td></tr>
+  <tr><td>Revisión de código y refactoring</td><td>20</td></tr>
+  <tr><td>Documentación técnica general</td><td>16</td></tr>
+  <tr class="subtotal"><td>Subtotal</td><td>124</td></tr>
+</table>
+
+<div class="total-box">
+  GRAN TOTAL: <span>1.291 horas</span>
+  <br><small>Desarrollo Base: 533h &nbsp;|&nbsp; ANEXO I: 634h &nbsp;|&nbsp; QA/Margen: 124h</small>
+</div>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>5. PLAN DE SPRINTS (2 semanas / sprint, 1 Frontend + 1 Backend)</h2>
+<p>Capacidad por sprint: <strong>1 BE (80h) + 1 FE (80h) = 160 horas</strong><br>
+Los sprints están balanceados para que ambos devs tengan carga equivalente.<br>
+<strong>Total sprints estimados: 9 sprints (~4.5 meses)</strong></p>
+
+<h3>Sprint 1 — Fundaciones (160h)</h3>
+<table>
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Setup proyecto, Docker, configuración DB</td><td>36</td></tr>
+  <tr><td>BE</td><td>Auth: tablas usuarios + OTP, servicio email, template</td><td>19</td></tr>
+  <tr><td>BE</td><td>Auth: APIs request-code + verify-code + JWT</td><td>16</td></tr>
+  <tr><td>FE</td><td>Servicio API centralizado (axios wrapper, interceptors)</td><td>14</td></tr>
+  <tr><td>FE</td><td>Pantalla login email + pantalla código OTP</td><td>12</td></tr>
+  <tr><td>FE</td><td>Integración con APIs auth + JWT storage</td><td>10</td></tr>
+  <tr><td>FE</td><td>Protección de rutas + expiración sesión</td><td>8</td></tr>
+  <tr><td>BE</td><td>Middleware auth + rate limiting OTP</td><td>12</td></tr>
+  <tr><td>BE+FE</td><td>Tests autenticación</td><td>8</td></tr>
+  <tr class="subtotal"><td></td><td>Margen para imprevistos</td><td>25</td></tr>
+</table>
+
+<h3>Sprint 2 — Modelo de Datos (160h)</h3>
+<table>
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Diseño y creación de todas las tablas base</td><td>60</td></tr>
+  <tr><td>BE</td><td>Índices, constraints, FK</td><td>8</td></tr>
+  <tr><td>BE</td><td>Seed data / migración JSON→DB</td><td>12</td></tr>
+  <tr><td>FE</td><td>Reemplazar JSON mock cuida-tu-bosque por API</td><td>6</td></tr>
+  <tr><td>FE</td><td>Reemplazar JSON mock nuevos-bosques por API</td><td>6</td></tr>
+  <tr><td>FE</td><td>Reemplazar JSON mock sostenibilidad por API</td><td>6</td></tr>
+  <tr><td>FE</td><td>Reemplazar JSON mock certificaciones por API</td><td>6</td></tr>
+  <tr><td>FE</td><td>Reemplazar JSON mock aula-verde + listado programas por API</td><td>10</td></tr>
+  <tr><td>FE</td><td>Refactor <code>useProgramMap</code> hook para consumir API</td><td>10</td></tr>
+  <tr><td>FE</td><td>Refactor <code>useMunicipioFilter</code></td><td>4</td></tr>
+  <tr class="subtotal"><td></td><td>Margen para imprevistos</td><td>32</td></tr>
+</table>
+
+<h3>Sprint 3 — APIs Core (160h)</h3>
+<table>
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Stored procedures CRUD (todas las entidades)</td><td>24</td></tr>
+  <tr><td>BE</td><td>API programas + distritos (árbol completo)</td><td>18</td></tr>
+  <tr><td>BE</td><td>API parcelas (detalle, indicadores, catastrales, leyenda)</td><td>24</td></tr>
+  <tr><td>BE</td><td>API informacion, documentos, emisiones</td><td>14</td></tr>
+  <tr><td>FE</td><td>Loading states (skeletons/spinners) en cada sección</td><td>8</td></tr>
+  <tr><td>FE</td><td>Error boundaries y mensajes de error</td><td>6</td></tr>
+  <tr><td>FE</td><td>Retry logic + empty states</td><td>8</td></tr>
+  <tr><td>FE</td><td>Testing manual integración parcial (flujos disponibles)</td><td>20</td></tr>
+  <tr class="subtotal"><td></td><td>Margen para imprevistos</td><td>38</td></tr>
+</table>
+
+<h3>Sprint 4 — APIs Restantes + Upload + QA Base (160h)</h3>
+<table>
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>API sostenibilidad (metas, pilares, actuaciones)</td><td>8</td></tr>
+  <tr><td>BE</td><td>API certificaciones + aula verde</td><td>12</td></tr>
+  <tr><td>BE</td><td>API municipios, validación inputs, manejo errores, paginación</td><td>26</td></tr>
+  <tr><td>BE</td><td>Upload de archivos (imágenes/PDFs) + almacenamiento</td><td>22</td></tr>
+  <tr><td>BE</td><td>Documentación Swagger/OpenAPI</td><td>10</td></tr>
+  <tr><td>FE</td><td>Ajustes de integración con APIs restantes</td><td>12</td></tr>
+  <tr><td>FE</td><td>Testing manual E2E flujos completos</td><td>20</td></tr>
+  <tr><td>FE</td><td>Bugfixes post-integración</td><td>16</td></tr>
+  <tr><td>BE</td><td>Tests unitarios + integración</td><td>20</td></tr>
+  <tr class="subtotal"><td></td><td>Margen para imprevistos</td><td>14</td></tr>
+</table>
+
+<h3 class="sprint-anexo">Sprint 5 — AEMET API + KPIs Ambientales (160h) [ANEXO]</h3>
+<table class="anexo">
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Investigación AEMET OpenData API + mapeo municipios</td><td>14</td></tr>
+  <tr><td>BE</td><td>Servicio conexión AEMET (API key, retry, rate limiting)</td><td>10</td></tr>
+  <tr><td>BE</td><td>Endpoints meteo actual + predicciones + alertas</td><td>26</td></tr>
+  <tr><td>BE</td><td>Caché AEMET + fallback por indisponibilidad</td><td>12</td></tr>
+  <tr><td>FE</td><td>Widget/panel meteorológico en mapa</td><td>16</td></tr>
+  <tr><td>FE</td><td>Vista de predicciones (próximos días)</td><td>12</td></tr>
+  <tr><td>FE</td><td>Panel de alertas y avisos meteorológicos</td><td>12</td></tr>
+  <tr><td>BE</td><td>Tablas KPIs + modelo carbono + API endpoints</td><td>22</td></tr>
+  <tr><td>FE</td><td>Dashboard KPIs (inicio)</td><td>20</td></tr>
+  <tr class="subtotal"><td></td><td>Tests + Margen para imprevistos</td><td>16</td></tr>
+</table>
+
+<h3 class="sprint-anexo">Sprint 6 — Sensores IoT: Formularios + Modelo (160h) [ANEXO]</h3>
+<table class="anexo">
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Tablas: tipos_sensor, sensores, lecturas, config_api</td><td>18</td></tr>
+  <tr><td>BE</td><td>Índices + particionamiento por fecha</td><td>6</td></tr>
+  <tr><td>BE</td><td>API CRUD sensores + carga lecturas (individual y bulk)</td><td>16</td></tr>
+  <tr><td>BE</td><td>Validación de datos + API consulta lecturas</td><td>12</td></tr>
+  <tr><td>BE</td><td>Servicio polling/webhook APIs externas sensores</td><td>12</td></tr>
+  <tr><td>FE</td><td>Página gestión sensores (listado, alta, baja, edición)</td><td>14</td></tr>
+  <tr><td>FE</td><td>Formulario estándar carga manual lecturas (individual + CSV)</td><td>12</td></tr>
+  <tr><td>FE</td><td>Formulario configuración API externa por sensor</td><td>8</td></tr>
+  <tr><td>FE</td><td>Dashboard visualización IoT (gráficos, último valor)</td><td>20</td></tr>
+  <tr><td>BE</td><td>Config credenciales + mapeo proveedores + jobs cron</td><td>24</td></tr>
+  <tr class="subtotal"><td></td><td>Tests + Margen para imprevistos</td><td>18</td></tr>
+</table>
+
+<h3 class="sprint-anexo">Sprint 7 — IoT Mapa + IA Descriptiva/Predictiva (160h) [ANEXO]</h3>
+<table class="anexo">
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>FE</td><td>Integración sensores en mapa (marcadores con último valor)</td><td>10</td></tr>
+  <tr><td>BE</td><td>Servicio agregaciones (CO2, superficie, árboles por programa/municipio)</td><td>12</td></tr>
+  <tr><td>BE</td><td>Tendencias temporales + rankings + API descriptivo</td><td>18</td></tr>
+  <tr><td>BE</td><td>Modelo predictivo CO2 + cobertura arbórea (regresión)</td><td>22</td></tr>
+  <tr><td>BE</td><td>API predictivo + disclaimer automático</td><td>8</td></tr>
+  <tr><td>FE</td><td>Dashboard analítica descriptiva (gráficos resumen, tendencias)</td><td>16</td></tr>
+  <tr><td>FE</td><td>Vista proyecciones predictivas + intervalos confianza</td><td>12</td></tr>
+  <tr><td>FE</td><td>Badges "resultado indicativo" + KPIs dashboard final</td><td>12</td></tr>
+  <tr><td>BE</td><td>Servicio cálculo KPIs + modelo carbono completo</td><td>16</td></tr>
+  <tr><td>FE</td><td>Visualización modelo carbono (barras/líneas)</td><td>12</td></tr>
+  <tr class="subtotal"><td></td><td>Tests + Margen para imprevistos</td><td>22</td></tr>
+</table>
+
+<h3 class="sprint-anexo">Sprint 8 — Gobernanza Digital + DevOps (160h) [ANEXO]</h3>
+<table class="anexo">
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr><td>BE</td><td>Tabla aportaciones_ciudadanas + API CRUD</td><td>12</td></tr>
+  <tr><td>BE</td><td>Moderación básica (aprobación/rechazo) + consulta pública</td><td>10</td></tr>
+  <tr><td>FE</td><td>Formulario aportación ciudadana (texto + imagen)</td><td>10</td></tr>
+  <tr><td>FE</td><td>Vista aportaciones públicas + panel admin moderación</td><td>16</td></tr>
+  <tr><td>BE</td><td>Pipeline CI/CD (GitHub Actions / GitLab CI)</td><td>12</td></tr>
+  <tr><td>BE</td><td>Entorno staging automático + deploy producción</td><td>16</td></tr>
+  <tr><td>BE</td><td>Monitoreo (health checks, logs centralizados)</td><td>8</td></tr>
+  <tr><td>FE</td><td>Testing E2E automatizado flujos críticos (Playwright)</td><td>20</td></tr>
+  <tr><td>BE+FE</td><td>Refactor multi-tenant + feature flags</td><td>24</td></tr>
+  <tr class="subtotal"><td></td><td>Tests gobernanza + Margen para imprevistos</td><td>14</td></tr>
+</table>
+
+<h3 class="sprint-anexo">Sprint 9 — Replicabilidad + QA Final + Cierre (160h) [ANEXO + Base]</h3>
+<table>
+  <tr><th style="width:60px">Dev</th><th>Tarea</th><th style="width:70px">Horas</th></tr>
+  <tr style="color:#0066cc"><td>BE</td><td>Configuración externalizada (env vars por territorio)</td><td>8</td></tr>
+  <tr style="color:#0066cc"><td>BE+FE</td><td>Documentación técnica de replicación (guía paso a paso)</td><td>10</td></tr>
+  <tr style="color:#0066cc"><td>BE</td><td>Documentación despliegue y operación</td><td>8</td></tr>
+  <tr><td>BE</td><td>Tests unitarios + integración finales</td><td>16</td></tr>
+  <tr><td>FE</td><td>Testing manual E2E completo (todos los flujos)</td><td>30</td></tr>
+  <tr><td>BE+FE</td><td>Bugfixes y ajustes finales</td><td>40</td></tr>
+  <tr><td>BE+FE</td><td>Revisión de código y refactoring</td><td>20</td></tr>
+  <tr><td>BE+FE</td><td>Documentación técnica general</td><td>16</td></tr>
+  <tr class="subtotal"><td></td><td>Margen para imprevistos</td><td>12</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>6. NOTAS SOBRE SECCIONES EXCLUIDAS DEL ANEXO</h2>
+<div class="excluded">§9 Economía Circular / Crecer Verde — <strong>EXCLUIDO</strong> — El cliente indica incertidumbre ("¿podemos sacarlo?"). No se presupuesta.</div>
+<div class="excluded">§2 IA — Agentes inteligentes — <strong>EXCLUIDO</strong> — Explícitamente fuera de alcance en el ANEXO</div>
+<div class="excluded">§2 IA — Aprendizaje automático continuo — <strong>EXCLUIDO</strong> — Explícitamente fuera de alcance</div>
+<div class="excluded">§4 IoT — Hardware físico — <strong>EXCLUIDO</strong> — Solo software; sensores/instalación/mantenimiento excluidos</div>
+<div class="excluded">§3 AEMET — Datos históricos — <strong>EXCLUIDO</strong> — Explícitamente fuera de alcance</div>
+<div class="excluded">§5 Gobernanza — Plataforma social — <strong>EXCLUIDO</strong> — Solo mecanismos controlados de aportación</div>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>7. RIESGOS Y CONSIDERACIONES</h2>
+<div class="risk"><strong>AEMET API:</strong> Servicio público con posibles límites de rate y disponibilidad. Se requiere API key gratuita. Posibles cambios en la API sin previo aviso.</div>
+<div class="risk"><strong>Sensores IoT:</strong> La variedad de APIs de proveedores de sensores puede requerir adaptadores específicos. Se estima un máximo de 3-4 tipos de sensores/proveedores diferentes. Más proveedores incrementarían las horas de mapeo.</div>
+<div class="risk"><strong>IA Predictiva:</strong> Los modelos de complejidad media (regresión, series temporales simples) son suficientes para el alcance. Si se requieren modelos más sofisticados, las horas aumentarían significativamente.</div>
+<div class="risk"><strong>Datos GeoJSON:</strong> La migración de coordenadas a la DB requiere extensión espacial (PostGIS / SQL Server Spatial).</div>
+<div class="risk"><strong>Economía Circular (§9):</strong> Si finalmente se incluye, agregar estimadamente 40-60h adicionales para diseño, backend y frontend.</div>
+<div class="risk"><strong>Multi-tenant:</strong> El refactor a multi-tenant es fundamental para la replicabilidad pero agrega complejidad al modelo de datos existente.</div>
+
+<div class="footer">
+  Documento generado basado en el análisis del código fuente del proyecto Conecta Futuro y el ANEXO I de Aclaraciones de Alcance.<br>
+  Febrero 2026
+</div>
+
+</div>
+</body>
+</html>

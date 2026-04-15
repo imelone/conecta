@@ -15,8 +15,6 @@ const CertificacionesSideNav: React.FC<any> = () => {
             src={sectionMainImg}
             alt="Logo"
             style={sidebarLogoImage}
-            width={300}
-            height={300}
           />
         )}
       </Box>

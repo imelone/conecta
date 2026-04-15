@@ -2,10 +2,11 @@ import { SxProps } from '@mui/material'
 
 export const modalContainer: SxProps = {
   position: 'absolute',
-  left: '26.4rem',
   top: '0.1rem',
   zIndex: 2000,
-  width: '30.125rem',
+  left: { xs: 0, sm: 0, md: '26.4rem' },
+  width: { xs: '100%', sm: '100%', md: '30.125rem' },
+  maxWidth: { xs: '100vw', md: 'none' },
 }
 
 export const draggableHandle: SxProps = {

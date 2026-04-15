@@ -2,21 +2,28 @@ import { SxProps } from '@mui/material'
 
 export const sidebarLogo: SxProps = {
   textAlign: 'center',
-  padding: '10px 0',
+  padding: { xs: '6px 0', md: '10px 0' },
+  '& img': {
+    maxWidth: { xs: '44px', md: '260px' },
+  },
 }
 
 export const sidebarLogoImage: React.CSSProperties = {
+  width: '100%',
   maxWidth: '100%',
   height: 'auto',
+  objectFit: 'contain',
+  display: 'block',
+  margin: '0 auto',
 }
 
 export const sectionTitle: SxProps = {
   display: 'flex',
   justifyContent: 'center',
   textAlign: 'center',
-  padding: '1rem',
+  padding: { xs: '0.5rem', md: '1rem' },
   margin: 0,
-  fontSize: '24px',
+  fontSize: { xs: '18px', md: '24px' },
   flex: 1,
 }
 
@@ -24,7 +31,7 @@ export const sidebarHeader: SxProps = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginLeft: '5rem',
+  marginLeft: { xs: '1rem', md: '5rem' },
 }
 
 export const sidebarPane: SxProps = {
@@ -34,8 +41,8 @@ export const sidebarPane: SxProps = {
 export const settingsSection: SxProps = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px',
-  padding: '10px 0',
+  gap: { xs: '12px', md: '20px' },
+  padding: { xs: '8px', md: '10px 0' },
 }
 
 export const settingsActions: SxProps = {

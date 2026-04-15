@@ -4,7 +4,7 @@ export const dataAnalysisMenu: SxProps = {
   display: 'flex',
   flexFlow: 'column',
   maxHeight: 'calc(100vh - 70px)',
-  width: '30.125rem',
+  width: { xs: '100%', sm: '100%', md: '30.125rem' },
   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, .25)',
   background: '#fff',
   transition: 'transform .3s linear',
@@ -19,14 +19,14 @@ export const tabHeader: SxProps = {
 
 export const tabLink: SxProps = {
   flex: 1,
-  padding: '1rem',
+  padding: { xs: '0.6rem 0.4rem', md: '1rem' },
   textAlign: 'center',
   color: 'black',
   background: '#7a7a7a',
   border: 'none',
   cursor: 'pointer',
   transition: 'background 0.3s',
-  '& p': { margin: 0 },
+  '& p': { margin: 0, fontSize: { xs: '12px', md: '14px' } },
 }
 
 export const tabLinkActive: SxProps = {
@@ -69,6 +69,7 @@ export const gridContainer: SxProps = {
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
+  overflowX: 'auto',
   '& .MuiDataGrid-root': {
     border: '1px solid #ddd',
   },
@@ -121,7 +122,9 @@ export const link: SxProps = {
   color: 'inherit',
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
+  gap: { xs: '4px', md: '8px' },
+  fontSize: { xs: '0.85rem', md: '1rem' },
+  wordBreak: 'break-word',
   '&:hover': {
     color: '#007bff',
   },
@@ -131,19 +134,20 @@ export const link: SxProps = {
 export const informacionItem: SxProps = {
   backgroundColor: '#ffffff',
   borderRadius: '6px',
-  padding: '20px',
+  padding: { xs: '12px', md: '20px' },
   boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
 }
 
 export const informacionItemTitle: SxProps = {
   margin: '0 0 20px 0',
-  fontSize: '18px',
+  fontSize: { xs: '15px', md: '18px' },
   fontWeight: 700,
   borderBottom: '2px solid #4B9CD3',
   paddingBottom: '12px',
   display: 'flex',
   alignItems: 'center',
   color: '#333',
+  wordBreak: 'break-word',
 }
 
 export const colorIndicator: React.CSSProperties = {
@@ -156,13 +160,13 @@ export const colorIndicator: React.CSSProperties = {
 }
 
 export const informacionContent: SxProps = {
-  marginLeft: '20px',
+  marginLeft: { xs: '8px', md: '20px' },
 }
 
 export const documentTitle: SxProps = {
-  fontSize: '16px',
+  fontSize: { xs: '14px', md: '16px' },
   color: '#333',
-  paddingLeft: '10px',
+  paddingLeft: { xs: '4px', md: '10px' },
 }
 
 export const documentList: SxProps = {
@@ -176,6 +180,7 @@ export const documentItem: SxProps = {
   backgroundColor: '#f9f9f9',
   transition: 'transform 0.2s ease',
   border: 'none',
+  padding: { xs: '4px', md: '0' },
   '&:hover': {
     transform: 'translateY(-2px)',
   },

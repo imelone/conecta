@@ -1,4 +1,5 @@
 import React from "react";
+import { Box } from "@mui/material";
 interface SidenavPaneProps {
   activePane: string;
   paneId: string;
@@ -12,14 +13,18 @@ const SidenavPane: React.FC<SidenavPaneProps> = ({
 }) => {
   return (
     <div className="sidebar-pane-component">
-      <div id="sidebar" className="leaflet-sidebar-component">
+      <Box
+        id="sidebar"
+        className="leaflet-sidebar-component"
+        sx={{ paddingLeft: { xs: '56px', sm: '64px', md: '80px' } }}
+      >
         <div
           className={`sidebar-pane ${activePane === paneId ? "active" : ""}`}
           id={paneId}
         >
-          <div className="sidebar-content">{children}</div>
+          <div className="sidebar-content" style={{ marginLeft: 0 }}>{children}</div>
         </div>
-      </div>
+      </Box>
     </div>
   );
 };

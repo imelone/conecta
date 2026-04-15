@@ -11,7 +11,7 @@ const descriptionContainer = {
   textAlign: 'left', fontSize: '1rem', lineHeight: 1.6,
   color: 'black', marginBottom: '1.5rem', padding: '1rem 1.4rem',
 } as const;
-const sidebarLogoImage: React.CSSProperties = { maxWidth: '100%', height: 'auto' };
+const sidebarLogoImage: React.CSSProperties = { width: '100%', maxWidth: '260px', height: 'auto', objectFit: 'contain', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.12)' };
 
 const AulaVerde: React.FC = () => {
   const [data, setData] = useState<any>(undefined);
@@ -54,8 +54,6 @@ const AulaVerde: React.FC = () => {
               src={sectionMainImg}
               alt="Logo"
               style={sidebarLogoImage}
-              width={300}
-              height={300}
             />
           )}
         </Box>

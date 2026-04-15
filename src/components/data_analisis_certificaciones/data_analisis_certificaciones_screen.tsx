@@ -29,9 +29,9 @@ const DataAnalysisCertificaciones: React.FC<DataAnalysisMenuProps> = ({
   if (!isOpen) return null;
 
   const renderItems = (items: string[]) => (
-    <ul style={{ listStyleType: "none", paddingLeft: "20px" }}>
+    <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
       {items?.map((item, index) => (
-        <li key={index} style={{ fontSize: "1rem", padding: "0.2rem" }}>
+        <li key={index} style={{ fontSize: "0.9rem", padding: "0.2rem", wordBreak: "break-word" }}>
           {item}
         </li>
       ))}
@@ -43,13 +43,13 @@ const DataAnalysisCertificaciones: React.FC<DataAnalysisMenuProps> = ({
       <Box sx={dataAnalysisMenu}>
         <Box sx={tabHeader}>
           <Box component="button" sx={activeTab === "iso" ? tabLinkActive : tabLink} onClick={() => handleTabClick("iso")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>ISO 14001</p>
+            <p style={{ fontWeight: "700" }}>ISO 14001</p>
           </Box>
           <Box component="button" sx={activeTab === "sicted" ? tabLinkActive : tabLink} onClick={() => handleTabClick("sicted")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>SICTED</p>
+            <p style={{ fontWeight: "700" }}>SICTED</p>
           </Box>
           <Box component="button" sx={activeTab === "caae" ? tabLinkActive : tabLink} onClick={() => handleTabClick("caae")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>NORMA CAAE</p>
+            <p style={{ fontWeight: "700" }}>NORMA CAAE</p>
           </Box>
         </Box>
         <Box sx={tabContent}>

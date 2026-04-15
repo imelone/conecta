@@ -101,8 +101,6 @@ const Sidebar: React.FC = () => {
               src={Logo}
               alt="Logo"
               style={sidebarLogoImage}
-              width={100}
-              height={100}
             />
           </Box>
           <li>
@@ -176,8 +174,6 @@ const Sidebar: React.FC = () => {
               src={subMenuMainImg}
               alt="description"
               style={sidebarLogoImage}
-              width={300}
-              height={300}
             />
           </div>
         )}
@@ -189,7 +185,7 @@ const Sidebar: React.FC = () => {
           }`}
           id="settings"
         >
-          <Box component="h1" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '5rem' }}>Configuración</Box>
+          <Box component="h1" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: { xs: '1rem', md: '5rem' } }}>Configuración</Box>
           <Box sx={settingsSection}>
             <p>Contenido de configuración</p>
             <Box sx={settingsActions}>

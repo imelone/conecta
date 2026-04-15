@@ -36,8 +36,6 @@ const TownTreeMenu: React.FC<TownListProps> = ({
             src={`/assets/images/sections_menu_main/${sectionImg}.png`}
             alt="Logo"
             style={sidebarLogoImage}
-            width={300}
-            height={300}
           />
         </Box>
 

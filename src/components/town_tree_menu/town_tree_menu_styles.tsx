@@ -30,11 +30,16 @@ export const label: SxProps = {
   fontSize: '12px',
   color: '#333',
   marginLeft: '8px',
-  wordWrap: 'break-word',
-  flexWrap: 'wrap',
+  wordBreak: 'break-word',
+  overflow: 'hidden',
+  flex: 1,
 }
 
 export const sidebarLogoImage: React.CSSProperties = {
-  maxWidth: '100%',
+  width: '100%',
+  maxWidth: '260px',
   height: 'auto',
+  objectFit: 'contain',
+  borderRadius: '8px',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
 }

@@ -40,13 +40,13 @@ const DataAnalysisSostenibilidad: React.FC<DataAnalysisMenuProps> = ({
       <Box sx={dataAnalysisMenu}>
         <Box sx={tabHeader}>
           <Box component="button" sx={activeTab === "metas" ? tabLinkActive : tabLink} onClick={() => handleTabClick("metas")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>METAS</p>
+            <p style={{ fontWeight: "700" }}>METAS</p>
           </Box>
           <Box component="button" sx={activeTab === "pilares" ? tabLinkActive : tabLink} onClick={() => handleTabClick("pilares")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>PILARES</p>
+            <p style={{ fontWeight: "700" }}>PILARES</p>
           </Box>
           <Box component="button" sx={activeTab === "actuaciones" ? tabLinkActive : tabLink} onClick={() => handleTabClick("actuaciones")}>
-            <p style={{ fontWeight: "700", fontSize: "14px" }}>ACTUACIONES</p>
+            <p style={{ fontWeight: "700" }}>ACTUACIONES</p>
           </Box>
         </Box>
         <Box sx={{ ...tabContent as object, margin: '1rem' }}>

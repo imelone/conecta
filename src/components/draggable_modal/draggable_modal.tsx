@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import Draggable from "react-draggable";
 import { modalContainer, draggableHandle, minimizeButton } from "./draggable_modal_styles";
 
@@ -14,15 +14,17 @@ const DraggableModal: React.FC<DraggableModalProps> = ({
   setIsMinimized,
   children,
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const toggleMinimized = () => {
     setIsMinimized(!isMinimized);
   };
 
-  return (
-    <Draggable handle=".draggable-handle" bounds="parent">
-      <Box sx={modalContainer}>
-        <div>
-          <Box className="draggable-handle" sx={draggableHandle}>
+  const content = (
+    <Box sx={modalContainer}>
+      <div>
+        <Box className="draggable-handle" sx={draggableHandle}>
             <Box
               component="button"
               onClick={toggleMinimized}
@@ -37,6 +39,13 @@ const DraggableModal: React.FC<DraggableModalProps> = ({
           {!isMinimized ? children : <div></div>}
         </div>
       </Box>
+  );
+
+  if (isMobile) return content;
+
+  return (
+    <Draggable handle=".draggable-handle" bounds="parent">
+      {content}
     </Draggable>
   );
 };
