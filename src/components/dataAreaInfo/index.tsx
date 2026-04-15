@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   areaInfoComponent, headerStyle, titleStyle, colorCircle,
-  iconStyle, closeIcon, textContent,
+  iconStyle, textContent,
 } from "./data_area_info_styles";
 
 interface AreaInfoComponentProps {
