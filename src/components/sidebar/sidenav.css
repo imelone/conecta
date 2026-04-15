@@ -215,10 +215,13 @@ input:checked + .slider:before {
 .sidebar-logo {
   text-align: center;
   padding: 10px 0;
+  background-color: #ffffff;
+  width: 80px;
+  margin-left: -2%;
 }
 
 .sidebar-logo-image {
-  max-width: 100%;
+  max-width: calc(100% - 16px);
   height: auto;
 }
 .sidebar-content .sidebar-pane ul {
