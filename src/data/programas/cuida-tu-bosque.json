@@ -55,6 +55,35 @@
                         "co2PorCapturar": "1.68",
                         "factorHidrologico": ""
                       },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
+                      },
                       "Copernico": {},
                       "analisis": {
                         "text": "Para",
@@ -91,6 +120,35 @@
                         "co2PorCapturar": "0,47",
                         "factorHidrologico": ""
                       },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
+                      },
                       "analisis": {
                         "text": "Para",
                         "image": ""
@@ -125,6 +183,35 @@
                         "co2Capturado": "11,58",
                         "co2PorCapturar": "0,19",
                         "factorHidrologico": ""
+                      },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
                       },
                       "analisis": {
                         "text": "Para",
@@ -161,6 +248,35 @@
                         "co2PorCapturar": "3,68",
                         "factorHidrologico": ""
                       },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
+                      },
                       "analisis": {
                         "text": "Para",
                         "image": ""
@@ -196,8 +312,102 @@
                         "co2PorCapturar": "3,41",
                         "factorHidrologico": ""
                       },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
+                      },
                       "analisis": {
                         "text": "Para",
+                        "image": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.058, 38.303]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "losLlanos",
+                        "label": "Los Llanos",
+                        "color": "#2E8B57",
+                        "text": "Para poder desarrollar el programa \u201cConecta cuida tu Bosque\u201d en los bosques mencionados, invitamos a empresas y entidades comprometidas con el desaf\u00edo medioambiental a participar en el apadrinamiento del programa. Ambos programas representan una respuesta proactiva y participativa a los retos medioambientales contempor\u00e1neos, enmarcada en las directrices de pol\u00edticas ambientales europeas y globales."
+                      },
+                      "catastrales": {
+                        "text": "",
+                        "image": "",
+                        "refCat": "",
+                        "poligono": "",
+                        "parcela": "",
+                        "coordenadasX": "",
+                        "coordenadasY": ""
+                      },
+                      "indicadores": {
+                        "superficie": "",
+                        "arboles": "",
+                        "co2Capturado": "",
+                        "co2PorCapturar": "",
+                        "factorHidrologico": ""
+                      },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C1-DESARROLLO DE ACTUACIONES CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "C\u00e1lculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C2-CALCULO HUELLA DE CARBONO CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C3-INFORME PAIF CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecuci\u00f3n",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C4-INDICADORES Y CROOGRAMA DE EJECUCION CHICLANA.pdf"
+                          },
+                          {
+                            "nombre": "Metodolog\u00eda de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/C5-METODOLOGIA DE SEGUIMIENTO Y CONTROL CHICLANA.pdf"
+                          }
+                        ]
+                      },
+                      "Copernico": {},
+                      "analisis": {
+                        "text": "",
                         "image": ""
                       }
                     }
@@ -236,6 +446,35 @@
                         "co2Capturado": "",
                         "co2PorCapturar": "",
                         "factorHidrologico": ""
+                      },
+                      "informacion": {
+                        "documentos": [
+                          {
+                            "nombre": "Desarrollo de actuaciones",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/SE1-DESARROLLO DE ACTUACIONES SANTA ELENA.pdf"
+                          },
+                          {
+                            "nombre": "Cálculo de huella y plan medioambiental",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/SE2-CALCULO HUELLA DE CARBONO SANTA ELENA.pdf"
+                          },
+                          {
+                            "nombre": "Informe PAIF",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/SE3-INFORME PAIF SANTA ELENA.pdf"
+                          },
+                          {
+                            "nombre": "Indicadores y cronograma de ejecución",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/SE4-INDICADORES Y CRONOGRAMA DE EJECUCION SANTA ELENA.pdf"
+                          },
+                          {
+                            "nombre": "Metodología de seguimiento y control",
+                            "icono": "pdf",
+                            "url": "/assets/pdfs/SE5-METODOLOGIA DE SEGUIMIENTO Y CONTROL SANTA ELENA.pdf"
+                          }
+                        ]
                       },
                       "Copernico": {},
                       "analisis": {

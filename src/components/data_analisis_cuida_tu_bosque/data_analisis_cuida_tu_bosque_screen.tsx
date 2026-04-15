@@ -143,7 +143,7 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
             onClick={() => handleTabClick("informacion")}
           >
             <p style={{ fontWeight: "700", fontSize: "14px" }}>
-              INFORMACIÓN
+              ACTUACIONES
             </p>
           </button>
         </div>
