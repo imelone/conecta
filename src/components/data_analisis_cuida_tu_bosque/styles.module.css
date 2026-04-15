@@ -82,9 +82,10 @@
   text-decoration: none; /* Remove underline */
   color: inherit; /* Use the parent element's text color */
   display: flex; /* Align icon and text horizontally */
-  align-items: center; /* Center icon and text vertically */
+  align-items: flex-start; /* Align icon to top */
   gap: 8px; /* Add space between icon and text */
   background-color: #ffffff;
+  text-align: left;
 }
 
 .link:hover {
