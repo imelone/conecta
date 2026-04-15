@@ -73,6 +73,40 @@
                 ]
               },
               {
+                "municipio": "GEOLIT",
+                "parcelas": [
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [[[-3.542500, 38.34000]]]
+                    },
+                    "properties": {
+                      "leyenda": {
+                        "name": "GEOLIT",
+                        "label": "iniciativas",
+                        "color": "#4B9CD3",
+                        "text": "GEOLIT, Parque Científico y Tecnológico de Jaén, es un espacio de innovación y desarrollo sostenible que implementa prácticas ambientales responsables en su entorno natural."
+                      },
+                      "metas": ["Calcular", "Reducir", "Compensar"],
+                      "pilares": [
+                        "Físico-biológico",
+                        "Socioeconómico",
+                        "Procesos y sistemas"
+                      ],
+                      "actuaciones": [
+                        "Alcances",
+                        "Recursos disponibles",
+                        "¿Cómo y Cuándo?",
+                        "Revisión de procesos",
+                        "Indicadores de gestión",
+                        "Mejora contínua"
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
                 "municipio": "Carboneros",
                 "parcelas": [
                   {
