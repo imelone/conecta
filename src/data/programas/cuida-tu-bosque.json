@@ -351,7 +351,7 @@
                     "type": "Feature",
                     "geometry": {
                       "type": "Point",
-                      "coordinates": [[[-3.058, 38.303]]]
+                      "coordinates": [[[-3.08786, 38.30275]]]
                     },
                     "properties": {
                       "leyenda": {
@@ -362,15 +362,15 @@
                       },
                       "catastrales": {
                         "text": "",
-                        "image": "",
-                        "refCat": "",
-                        "poligono": "",
-                        "parcela": "",
-                        "coordenadasX": "",
-                        "coordenadasY": ""
+                        "image": "los-llanos-parcela.png",
+                        "refCat": "23029A05500059LU",
+                        "poligono": "55",
+                        "parcela": "59",
+                        "coordenadasX": "X:495.202,239260",
+                        "coordenadasY": "Y:4.240.928,659580"
                       },
                       "indicadores": {
-                        "superficie": "",
+                        "superficie": "22,82",
                         "arboles": "",
                         "co2Capturado": "",
                         "co2PorCapturar": "",

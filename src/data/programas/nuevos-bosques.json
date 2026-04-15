@@ -72,14 +72,14 @@
                       "catastrales": {
                         "text": "",
                         "image": "",
-                        "refCat": "23029A05500059 LU",
+                        "refCat": "23029A05500059LU",
                         "poligono": "55",
                         "parcela": "59",
                         "coordenadasX": "",
                         "coordenadasY": ""
                       },
                       "indicadores": {
-                        "superficie": "22,15",
+                        "superficie": "22,82",
                         "arbolesNuevos": "22820",
                         "co2PorCapturar": "1711,50"
                       },

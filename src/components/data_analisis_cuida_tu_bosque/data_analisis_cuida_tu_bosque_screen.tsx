@@ -7,6 +7,7 @@ import { useDataAnalysisCuidaTuBosqueViewModel } from "./data_analisis_cuida_tu_
 
 import DraggableModal from "../draggable_modal/draggable_modal";
 import DownloadIcon from "@mui/icons-material/Download";
+import { TreeMenu } from "../tree_menu/tree_menu";
 
 interface DataAnalysisMenuProps {
   isOpen: boolean;
@@ -172,40 +173,36 @@ const DataAnalysisCuidaTuBosque: React.FC<DataAnalysisMenuProps> = ({
                     }}
                   ></span>
                   {parcela.nombre}
-                 
                 </h2>
                 
-              
-                  <div className={styles.informacionContent}>
-                 
-                                        {/* Documentos están disponibles para todas las áreas */}
-                    {parcela.documentos && parcela.documentos.length > 0 && (
-                      <div>
-                        <h3 className={styles.documentTitle}>Documentos disponibles</h3>
-                        <ul className={styles.documentList}>
-                          {parcela.documentos.map((doc, docIndex) => (
-                            <li key={docIndex} className={styles.documentItem}>
-                              <a 
-                                href={doc.url} 
-                                className={styles.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download
-                              >
-                                <DownloadIcon
-                                  style={{ fontSize: "16px" }}
-                                />
-                                {doc.nombre}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-               
-                
-             
+                <div className={styles.informacionContent}>
+                  {parcela.documentos && parcela.documentos.length > 0 && (
+                    <div>
+                      {parcela.documentos.map((doc, docIndex) => (
+                        <TreeMenu
+                          key={docIndex}
+                          title={doc.nombre}
+                          sideBarSelectedOption=""
+                        >
+                          <div className={styles.documentItem}>
+                            <a 
+                              href={doc.url} 
+                              className={styles.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              download
+                            >
+                              <DownloadIcon
+                                style={{ fontSize: "16px" }}
+                              />
+                              {doc.url.split('/').pop()}
+                            </a>
+                          </div>
+                        </TreeMenu>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
