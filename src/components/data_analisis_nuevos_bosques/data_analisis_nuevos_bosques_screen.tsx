@@ -34,13 +34,14 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
   if (!isOpen) return null;
 
   const columnsDatosCatastrales: GridColDef[] = [
-    { 
-      field: "bosque", 
-      headerName: "BOSQUE", 
-      width: 250,
+    {
+      field: "bosque",
+      headerName: "BOSQUE",
+      flex: 1,
+      minWidth: 250,
       renderCell: (params) => (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span 
+        <div style={{ display: "flex", alignItems: "center", width: "100%", overflow: "hidden" }}>
+          <span
             style={{
               display: "inline-block",
               width: "12px",
@@ -49,12 +50,10 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
               backgroundColor: params.row.color || "#ccc",
               marginRight: "8px",
               border: "1px solid #000",
-              position: "relative",
-              top: "0px",
               flexShrink: 0
             }}
           ></span>
-          <span>{params.value}</span>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{params.value}</span>
         </div>
       ),
     },
@@ -63,13 +62,14 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
     // { field: "parcela", headerName: "PARCELA", width: 150 },
   ];
   const columnsIndicadores: GridColDef[] = [
-    { 
-      field: "bosque", 
-      headerName: "BOSQUE", 
-      width: 250,
+    {
+      field: "bosque",
+      headerName: "BOSQUE",
+      flex: 1,
+      minWidth: 250,
       renderCell: (params) => (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span 
+        <div style={{ display: "flex", alignItems: "center", width: "100%", overflow: "hidden" }}>
+          <span
             style={{
               display: "inline-block",
               width: "12px",
@@ -78,12 +78,10 @@ const DataAnalysisNuevosBosquesMenu: React.FC<DataAnalysisMenuProps> = ({
               backgroundColor: params.row.color || "#ccc",
               marginRight: "8px",
               border: "1px solid #000",
-              position: "relative",
-              top: "0px",
               flexShrink: 0
             }}
           ></span>
-          <span>{params.value}</span>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{params.value}</span>
         </div>
       ),
     },

@@ -80,8 +80,8 @@
                       },
                       "indicadores": {
                         "superficie": "22,82",
-                        "arbolesNuevos": "22820",
-                        "co2PorCapturar": "1711,50"
+                        "arbolesNuevos": "600",
+                        "co2PorCapturar": "46"
                       },
                       "analisis": {
                         "text": "",
@@ -137,7 +137,7 @@
                     "properties": {
                       "leyenda": {
                         "name": "laAliseda",
-                        "label": "La Aliseda",
+                        "label": "Museo de la Batalla de las Navas de Tolosa",
                         "color": "#008000",
                         "text": ""
                       },
@@ -152,8 +152,8 @@
                       },
                       "indicadores": {
                         "superficie": "",
-                        "arbolesNuevos": "3000",
-                        "co2PorCapturar": "230"
+                        "arbolesNuevos": "300",
+                        "co2PorCapturar": "23"
                       },
                       "analisis": {
                         "text": "",
